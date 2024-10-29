@@ -114,6 +114,7 @@ import '../i18n/config';
 import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { WorldMap } from "@/components/ui/world-map";
 import { useMusic } from "@/contexts/music-context";
+import '../i18n/config';
 
 export default function Home() {
     const { t } = useTranslation();
