@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Journey of Reincarnation
 
-## Getting Started
+A captivating web application that simulates the experience of reincarnation, offering users a chance to explore different life circumstances across various countries and social backgrounds.
 
-First, run the development server:
+[![Next.js](https://img.shields.io/badge/next.js-14.2.10-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-38B2AC)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
+## ✨ Features
+
+- 🌍 **Global Distribution**: Experience reincarnation across different countries with an interactive world map
+- 📊 **Dynamic Statistics**: Visualize social class and birthplace distributions through engaging charts
+- 🎭 **Special Events**: Encounter unique life circumstances with random special event triggers
+- 🌓 **Dark/Light Mode**: Seamlessly switch between dark and light themes
+- 🔊 **Sound Effects**: Immersive audio feedback for user interactions
+- 🌐 **Multilingual**: Support for English and Chinese languages
+- 📱 **Responsive Design**: Optimized for both desktop and mobile devices
+- 📤 **Share Feature**: Easy sharing of results through various platforms
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Charts**: [Chart.js](https://www.chartjs.org/) with [react-chartjs-2](https://react-chartjs-2.js.org/)
+- **Maps**: [react-simple-maps](https://www.react-simple-maps.io/)
+- **Internationalization**: [i18next](https://www.i18next.com/)
+- **Theme**: [next-themes](https://github.com/pacocoursey/next-themes)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/YourUsername/journey-of-reincarnation.git
+cd journey-of-reincarnation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌟 Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Click the "Start Journey" button to begin your reincarnation experience
+2. View your new life circumstances including country, gender, social class, etc.
+3. Explore the world map to see your birth location
+4. Check the statistics to understand global distributions
+5. Share your results with friends
+6. Reincarnate again to experience different possibilities
 
-## Deploy on Vercel
+## 📦 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/               # Next.js app directory
+├── components/        # React components
+│   ├── ui/           # UI components
+│   └── layout/       # Layout components
+├── contexts/         # React contexts
+├── hooks/            # Custom hooks
+├── i18n/             # Internationalization
+├── lib/              # Utility functions
+└── types/            # TypeScript types
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) for the beautiful UI components
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+- All other open-source projects that made this possible
