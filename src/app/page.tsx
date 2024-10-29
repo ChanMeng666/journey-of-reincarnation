@@ -106,13 +106,14 @@ import { ComparisonTable } from "@/components/ui/comparison-table";
 import { ShareDialog } from "@/components/ui/share-dialog";
 import { SpecialEventDialog } from "@/components/ui/special-event-dialog";
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import type { ReincarnationResult, SpecialEventType } from "@/types";
 import { generateReincarnation } from "@/lib/reincarnation";
 import { motion, AnimatePresence } from "framer-motion";
 import '../i18n/config';
 import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { WorldMap } from "@/components/ui/world-map";
+import { useMusic } from "@/contexts/music-context";
 
 export default function Home() {
     const { t } = useTranslation();
@@ -121,6 +122,7 @@ export default function Home() {
     const [specialEvent, setSpecialEvent] = useState<SpecialEventType | null>(null);
 
     const playSound = useSoundEffects();
+    const { isPlaying, toggleMusic } = useMusic();
 
     const handleStartReincarnation = () => {
         setIsGenerating(true);
@@ -144,7 +146,11 @@ export default function Home() {
 
     const currentResult = results[results.length - 1];
 
-
+    useEffect(() => {
+        if (!isPlaying) {
+            toggleMusic();
+        }
+    }, []);
 
     return (
         <MainLayout>

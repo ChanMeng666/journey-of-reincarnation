@@ -32,11 +32,52 @@
 
 
 
+// import type { Metadata } from "next";
+// import { Inter } from "next/font/google";
+// import "./globals.css";
+// import { ThemeProvider } from "@/components/theme-provider";
+// import { ThemeToggle } from "@/components/ui/theme-toggle";
+//
+// const inter = Inter({ subsets: ["latin"] });
+//
+// export const metadata: Metadata = {
+//     title: "Journey of Reincarnation",
+//     description: "A journey through different lives",
+// };
+//
+// export default function RootLayout({
+//                                        children,
+//                                    }: {
+//     children: React.ReactNode;
+// }) {
+//     return (
+//         <html lang="en" suppressHydrationWarning>
+//         <body className={inter.className}>
+//         <ThemeProvider
+//             attribute="class"
+//             defaultTheme="dark"
+//             enableSystem
+//             disableTransitionOnChange
+//         >
+//             {children}
+//             <ThemeToggle />
+//         </ThemeProvider>
+//         </body>
+//         </html>
+//     );
+// }
+
+
+
+
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { MusicProvider } from "@/contexts/music-context";
+import { MusicController } from "@/components/ui/music-controller";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,15 +94,18 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-        >
-            {children}
-            <ThemeToggle />
-        </ThemeProvider>
+        <MusicProvider>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="dark"
+                enableSystem
+                disableTransitionOnChange
+            >
+                {children}
+                <ThemeToggle />
+                <MusicController />
+            </ThemeProvider>
+        </MusicProvider>
         </body>
         </html>
     );
