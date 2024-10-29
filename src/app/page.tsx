@@ -112,6 +112,7 @@ import { generateReincarnation } from "@/lib/reincarnation";
 import { motion, AnimatePresence } from "framer-motion";
 import '../i18n/config';
 import { useSoundEffects } from "@/hooks/use-sound-effects";
+import { WorldMap } from "@/components/ui/world-map";
 
 export default function Home() {
     const { t } = useTranslation();
@@ -193,6 +194,8 @@ export default function Home() {
                                 </div>
                                 <ResultCard {...currentResult} />
                             </div>
+
+                            <WorldMap country={currentResult.country} />
 
                             <StatsCard
                                 socialClass={currentResult.socialClass}
