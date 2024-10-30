@@ -42,8 +42,8 @@ A captivating web application that simulates the experience of reincarnation, of
 
 1. Clone the repository
 ```bash
-git clone https://github.com/YourUsername/journey-of-reincarnation.git
-cd journey-of-reincarnation
+git clone https://github.com/ChanMeng666/journey-of-reincarnation2.git
+cd journey-of-reincarnation2
 ```
 
 2. Install dependencies

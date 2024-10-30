@@ -42,8 +42,8 @@
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/YourUsername/journey-of-reincarnation.git
-cd journey-of-reincarnation
+git clone https://github.com/ChanMeng666/journey-of-reincarnation2.git
+cd journey-of-reincarnation2
 ```
 
 2. 安装依赖
