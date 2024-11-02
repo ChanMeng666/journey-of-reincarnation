@@ -102,8 +102,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Author
 
-- [shadcn/ui](https://ui.shadcn.com/) for the beautiful UI components
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-- All other open-source projects that made this possible
+**Chan Meng**
+- LinkedIn: [chanmeng666](https://www.linkedin.com/in/chanmeng666/)
+- GitHub: [ChanMeng666](https://github.com/ChanMeng666)

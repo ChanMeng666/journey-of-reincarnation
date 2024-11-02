@@ -102,8 +102,8 @@ src/
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
-## 🙏 致谢
+## 创作者
 
-- [shadcn/ui](https://ui.shadcn.com/) 提供精美的 UI 组件
-- [Tailwind CSS](https://tailwindcss.com/) 提供实用优先的 CSS 框架
-- 所有使这个项目成为可能的开源项目
+**Chan Meng**
+- LinkedIn: [chanmeng666](https://www.linkedin.com/in/chanmeng666/)
+- GitHub: [ChanMeng666](https://github.com/ChanMeng666)
