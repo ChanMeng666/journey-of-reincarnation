@@ -35,8 +35,6 @@ export function ComparisonTable({ results }: ComparisonTableProps) {
         >
             <Card>
                 <CardHeader>
-                    {/*<CardTitle>Previous Lives</CardTitle>*/}
-                    {/*<CardDescription>Compare your different incarnations</CardDescription>*/}
                     <CardTitle>{t('compareTitle')}</CardTitle>
                     <CardDescription>{t('comparisons')}</CardDescription>
                 </CardHeader>
