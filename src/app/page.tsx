@@ -9,7 +9,6 @@ import { StatsCard } from "@/components/ui/stats-card";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import { ShareDialog } from "@/components/ui/share-dialog";
 import { SpecialEventDialog } from "@/components/ui/special-event-dialog";
-import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import type { ReincarnationResult, SpecialEventType } from "@/types";
 import { generateReincarnation } from "@/lib/reincarnation";
@@ -22,7 +21,6 @@ import '../i18n/config';
 import { TitleWithLogo } from "@/components/ui/title-with-logo";
 
 export default function Home() {
-    const { t } = useTranslation();
     const [results, setResults] = useState<ReincarnationResult[]>([]);
     const [isGenerating, setIsGenerating] = useState(false);
     const [specialEvent, setSpecialEvent] = useState<SpecialEventType | null>(null);
