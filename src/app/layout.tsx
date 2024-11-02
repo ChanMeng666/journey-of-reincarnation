@@ -13,6 +13,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: "Journey of Reincarnation",
     description: "A journey through different lives",
+    icons: {
+        icon: [
+            {
+                url: "/images/JourneyofReincarnation_black.svg",
+                type: "image/svg+xml",
+            }
+        ]
+    }
 };
 
 export default function RootLayout({

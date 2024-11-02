@@ -19,6 +19,7 @@ import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { WorldMap } from "@/components/ui/world-map";
 import { useMusic } from "@/contexts/music-context";
 import '../i18n/config';
+import { TitleWithLogo } from "@/components/ui/title-with-logo";
 
 export default function Home() {
     const { t } = useTranslation();
@@ -63,7 +64,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-4xl font-bold text-center text-white mt-8"
                 >
-                    {t('title')}
+                    <TitleWithLogo />
                 </motion.h1>
 
                 <StartButton
