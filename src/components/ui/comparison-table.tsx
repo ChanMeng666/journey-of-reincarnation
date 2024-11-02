@@ -35,8 +35,10 @@ export function ComparisonTable({ results }: ComparisonTableProps) {
         >
             <Card>
                 <CardHeader>
-                    <CardTitle>Previous Lives</CardTitle>
-                    <CardDescription>Compare your different incarnations</CardDescription>
+                    {/*<CardTitle>Previous Lives</CardTitle>*/}
+                    {/*<CardDescription>Compare your different incarnations</CardDescription>*/}
+                    <CardTitle>{t('compareTitle')}</CardTitle>
+                    <CardDescription>{t('comparisons')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="relative overflow-x-auto">
@@ -48,7 +50,7 @@ export function ComparisonTable({ results }: ComparisonTableProps) {
                                 <th className="px-4 py-2">{t('gender')}</th>
                                 <th className="px-4 py-2">{t('socialClass')}</th>
                                 <th className="px-4 py-2">{t('birthplace')}</th>
-                                <th className="px-4 py-2">Difficulty</th>
+                                <th className="px-4 py-2">{t('difficultyLevel')}</th>
                             </tr>
                             </thead>
                             <tbody>

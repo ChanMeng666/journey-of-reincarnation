@@ -159,6 +159,7 @@ import {
     BarElement
 } from 'chart.js';
 import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
     ArcElement,
@@ -171,6 +172,7 @@ ChartJS.register(
 
 export function StatsCard() {
     const { theme } = useTheme();
+    const { t } = useTranslation();
 
     const getChartColors = () => {
         return theme === 'dark'
@@ -182,9 +184,11 @@ export function StatsCard() {
     const textColor = theme === 'dark' ? '#e5e7eb' : '#374151';
 
     const socialClassData = {
-        labels: ['Low', 'Middle', 'High'],
+        // labels: ['Low', 'Middle', 'High'],
+        labels: [t('statistics.high'), t('statistics.middle'), t('statistics.low')],
         datasets: [
             {
+                label: t('statistics.percentage'),
                 data: [40, 50, 10],
                 backgroundColor: colors,
                 borderColor: colors,
@@ -193,11 +197,14 @@ export function StatsCard() {
         ],
     };
 
+
     const birthplaceData = {
-        labels: ['Urban', 'Suburban', 'Rural'],
+        // labels: ['Urban', 'Suburban', 'Rural'],
+        labels: [t('statistics.urban'), t('statistics.suburban'), t('statistics.rural')],
         datasets: [
             {
-                label: 'Distribution',
+                // label: 'Distribution',
+                label: t('statistics.percentage'),
                 data: [45, 30, 25],
                 backgroundColor: colors[0],
                 borderColor: colors[0],
@@ -249,20 +256,26 @@ export function StatsCard() {
         >
             <Card>
                 <CardHeader>
-                    <CardTitle>Statistics</CardTitle>
-                    <CardDescription>Global distribution of life circumstances</CardDescription>
+                    {/*<CardTitle>Statistics</CardTitle>*/}
+                    {/*<CardDescription>Global distribution of life circumstances</CardDescription>*/}
+                    <CardTitle>{t('statistics.title')}</CardTitle>
+                    <CardDescription>
+                        {t('statistics.globalDistribution')}
+                    </CardDescription>
                 </CardHeader>
                 <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h4 className="mb-4 text-sm font-medium">Social Class Distribution</h4>
+                        {/*<h4 className="mb-4 text-sm font-medium">Social Class Distribution</h4>*/}
+                        <h4 className="mb-4 text-sm font-medium">{t('statistics.socialClassTitle')}</h4>
                         <div className="h-[200px] flex justify-center">
-                            <Pie data={socialClassData} options={chartOptions} />
+                            <Pie data={socialClassData} options={chartOptions}/>
                         </div>
                     </div>
                     <div>
-                        <h4 className="mb-4 text-sm font-medium">Birthplace Distribution</h4>
+                        {/*<h4 className="mb-4 text-sm font-medium">Birthplace Distribution</h4>*/}
+                        <h4 className="mb-4 text-sm font-medium">{t('statistics.birthplaceTitle')}</h4>
                         <div className="h-[200px] flex justify-center">
-                            <Bar data={birthplaceData} options={chartOptions} />
+                            <Bar data={birthplaceData} options={chartOptions}/>
                         </div>
                     </div>
                 </CardContent>

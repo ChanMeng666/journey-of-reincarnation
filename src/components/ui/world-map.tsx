@@ -101,7 +101,8 @@ import {
     Geography,
     ZoomableGroup
 } from 'react-simple-maps';
-import { Card, CardContent, CardHeader, CardTitle } from './card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './card';
+import { useTranslation } from 'react-i18next';
 
 interface WorldMapProps {
     country: string;
@@ -114,6 +115,8 @@ interface Position {
 }
 
 export function WorldMap({ country, className }: WorldMapProps) {
+    const { t } = useTranslation();
+
     const [position, setPosition] = useState<Position>({
         coordinates: [0, 0], // 明确指定为元组
         zoom: 1
@@ -133,7 +136,9 @@ export function WorldMap({ country, className }: WorldMapProps) {
         >
             <Card>
                 <CardHeader>
-                    <CardTitle>Birth Location</CardTitle>
+                    {/*<CardTitle>Birth Location</CardTitle>*/}
+                    <CardTitle>{t('worldMap')}</CardTitle>
+                    <CardDescription>{t('birthCountry')}: {country}</CardDescription>
                 </CardHeader>
                 <CardContent className="p-0 overflow-hidden">
                     <div className="h-[400px] w-full">

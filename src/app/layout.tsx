@@ -122,6 +122,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { MusicProvider } from "@/contexts/music-context";
 import { MusicController } from "@/components/ui/music-controller";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { I18nProvider } from './i18n-provider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -145,10 +146,16 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
             >
-                {children}
-                <LanguageSwitcher />
-                <ThemeToggle />
-                <MusicController />
+                {/*{children}*/}
+                {/*<LanguageSwitcher />*/}
+                {/*<ThemeToggle />*/}
+                {/*<MusicController />*/}
+                <I18nProvider>
+                    {children}
+                    <LanguageSwitcher />
+                    <ThemeToggle />
+                    <MusicController />
+                </I18nProvider>
             </ThemeProvider>
         </MusicProvider>
         </body>

@@ -135,7 +135,7 @@ const resources = {
             low: 'Low Income',
             middle: 'Middle Income',
             high: 'High Income',
-            statistics: 'Statistics',
+            // statistics: 'Statistics',
             globalDistribution: 'Global Distribution',
             socialClassDistribution: 'Social Class Distribution',
             birthplaceDistribution: 'Birthplace Distribution',
@@ -164,6 +164,39 @@ const resources = {
                     description: 'You are destined to make history!'
                 },
                 continue: 'Continue'
+            },
+            compareTitle: 'Compare Lives',
+            comparisons: 'Life Comparisons',
+            worldMap: 'World Map',
+            birthCountry: 'Birth Country',
+            characteristics: 'Characteristics',
+            playerCount: 'Player Count',
+            totalLives: 'Total Lives',
+            distribution: 'Distribution',
+            gameStats: 'Game Statistics',
+            loadingTitle: 'Loading',
+            sharePlatform: {
+                twitter: 'Share on Twitter',
+                facebook: 'Share on Facebook',
+                whatsapp: 'Share on WhatsApp'
+            },
+            musicControl: {
+                play: 'Play Music',
+                pause: 'Pause Music'
+            },
+            statistics: {
+                title: 'Statistics',
+                globalDistribution: 'Global distribution of life circumstances',
+                socialClassTitle: 'Social Class Distribution',
+                birthplaceTitle: 'Birthplace Distribution',
+                percentage: 'Percentage',
+                population: 'Population',
+                urban: 'Urban',
+                suburban: 'Suburban',
+                rural: 'Rural',
+                high: 'High Income',
+                middle: 'Middle Income',
+                low: 'Low Income'
             }
         }
     },
@@ -189,7 +222,7 @@ const resources = {
             low: '低收入',
             middle: '中等收入',
             high: '高收入',
-            statistics: '统计数据',
+            // statistics: '统计数据',
             globalDistribution: '全球分布',
             socialClassDistribution: '社会阶层分布',
             birthplaceDistribution: '出生地分布',
@@ -218,6 +251,39 @@ const resources = {
                     description: '你注定要创造历史！'
                 },
                 continue: '继续'
+            },
+            compareTitle: '人生对比',
+            comparisons: '生命历程对比',
+            worldMap: '世界地图',
+            birthCountry: '出生国家',
+            characteristics: '个人特征',
+            playerCount: '玩家数量',
+            totalLives: '总转世次数',
+            distribution: '分布情况',
+            gameStats: '游戏统计',
+            loadingTitle: '加载中',
+            sharePlatform: {
+                twitter: '分享到推特',
+                facebook: '分享到脸书',
+                whatsapp: '分享到WhatsApp'
+            },
+            musicControl: {
+                play: '播放音乐',
+                pause: '暂停音乐'
+            },
+            statistics: {
+                title: '统计数据',
+                globalDistribution: '人生环境全球分布',
+                socialClassTitle: '社会阶层分布',
+                birthplaceTitle: '出生地分布',
+                percentage: '百分比',
+                population: '人口',
+                urban: '城市',
+                suburban: '郊区',
+                rural: '农村',
+                high: '高收入',
+                middle: '中等收入',
+                low: '低收入'
             }
         }
     }
@@ -227,7 +293,7 @@ i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: 'zh', // 默认语言
+        lng: 'en', // 默认语言
         fallbackLng: 'en', // 备用语言
         interpolation: {
             escapeValue: false

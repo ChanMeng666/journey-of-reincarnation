@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Volume2, VolumeX } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 export function MusicController() {
+    const { t } = useTranslation();
+
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -87,6 +90,7 @@ export function MusicController() {
             size="icon"
             onClick={toggleMusic}
             className="fixed bottom-4 right-4 bg-background/50 backdrop-blur-sm"
+            title={isPlaying ? t('musicControl.pause') : t('musicControl.play')}
         >
             <AnimatePresence mode="wait" initial={false}>
                 {isPlaying ? (

@@ -15,8 +15,8 @@ export function LanguageSwitcher() {
     const { i18n } = useTranslation();
 
     const languages = [
-        { code: 'zh', name: '中文', flag: '🇨🇳' },
         { code: 'en', name: 'English', flag: '🇺🇸' },
+        { code: 'zh', name: '中文', flag: '🇨🇳' },
     ];
 
     return (

@@ -87,6 +87,7 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 const loadingVariants: Variants = {
     start: {
@@ -118,6 +119,8 @@ const itemVariants: Variants = {
 };
 
 export function GeneratingAnimation() {
+    const { t } = useTranslation();
+
     return (
         <motion.div
             variants={containerVariants}
@@ -138,8 +141,11 @@ export function GeneratingAnimation() {
                 variants={itemVariants}
                 className="space-y-2 text-center"
             >
+                {/*<div className="text-lg font-medium text-muted-foreground">*/}
+                {/*    正在寻找你的来世...*/}
+                {/*</div>*/}
                 <div className="text-lg font-medium text-muted-foreground">
-                    正在寻找你的来世...
+                    {t('generatingText')}
                 </div>
 
                 <motion.div
@@ -149,8 +155,8 @@ export function GeneratingAnimation() {
                     {[..."..."].map((dot, i) => (
                         <motion.span
                             key={i}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            initial={{opacity: 0}}
+                            animate={{opacity: 1}}
                             transition={{
                                 duration: 0.5,
                                 repeat: Infinity,
