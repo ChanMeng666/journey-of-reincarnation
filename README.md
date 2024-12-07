@@ -1,6 +1,6 @@
 <div align="center">
- <h1>Journey of Reincarnation</h1>
- <img src="public/images/JourneyofReincarnation_black.svg" width="80px" alt="Journey of Reincarnation Logo">
+  <img src="public/images/JourneyofReincarnation_black.svg" width="80px" alt="Journey of Reincarnation Logo">
+  <h1>Journey of Reincarnation</h1>
 
  [![Next.js](https://img.shields.io/badge/next.js-14.2.10-black)](https://nextjs.org/)
  [![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
