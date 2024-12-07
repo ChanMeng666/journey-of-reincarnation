@@ -48,8 +48,8 @@
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/ChanMeng666/journey-of-reincarnation2.git
-cd journey-of-reincarnation2
+git clone https://github.com/ChanMeng666/journey-of-reincarnation.git
+cd journey-of-reincarnation
 ```
 
 2. 安装依赖
