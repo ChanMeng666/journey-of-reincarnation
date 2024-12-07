@@ -1,24 +1,30 @@
-# 轮回之旅
+<div align="center">
+  <img src="public/images/JourneyofReincarnation_black.svg" width="80px" alt="轮回之旅 Logo">
+  <h1>Journey of Reincarnation 轮回之旅</h1>
 
-一个引人入胜的网页应用，模拟轮回转世的体验，让用户探索不同国家和社会背景下的人生际遇。
 
-[![Next.js](https://img.shields.io/badge/next.js-14.2.10-black)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-38B2AC)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+
+ [![Next.js](https://img.shields.io/badge/next.js-14.2.10-black)](https://nextjs.org/)
+ [![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
+ [![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-38B2AC)](https://tailwindcss.com/)
+ [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+</div>
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+一个引人入胜的网页应用，模拟轮回转世的体验，让用户探索不同国家和社会背景下的人生际遇。
+
 ## ✨ 特性
 
-- 🌍 **全球分布**: 通过交互式世界地图体验不同国家的轮回
-- 📊 **动态统计**: 通过生动的图表可视化社会阶层和出生地分布
-- 🎭 **特殊事件**: 随机触发独特的人生际遇
-- 🌓 **深色/浅色模式**: 无缝切换深色和浅色主题
-- 🔊 **音效**: 沉浸式的交互音效反馈
-- 🌐 **多语言**: 支持中文和英文
-- 📱 **响应式设计**: 同时适配桌面和移动设备
-- 📤 **分享功能**: 轻松分享结果到各个平台
+- 🌍 **全球分布**：通过交互式世界地图体验不同国家的轮回
+- 📊 **动态统计**：通过生动的图表可视化社会阶层和出生地分布
+- 🎭 **特殊事件**：随机触发独特的人生际遇
+- 🌓 **深色/浅色模式**：无缝切换深色和浅色主题
+- 🔊 **音效**：沉浸式的交互音效反馈
+- 🌐 **多语言**：支持中文和英文
+- 📱 **响应式设计**：同时适配桌面和移动设备
+- 📤 **分享功能**：轻松分享结果到各个平台
 
 ## 🛠️ 技术栈
 
@@ -101,6 +107,14 @@ src/
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+## 使用技术
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white)
+![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue)
 
 ## 创作者
 

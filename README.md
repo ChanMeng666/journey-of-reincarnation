@@ -1,13 +1,16 @@
-# Journey of Reincarnation
+<div align="center">
+ <h1>Journey of Reincarnation</h1>
+ <img src="public/images/JourneyofReincarnation_black.svg" width="80px" alt="Journey of Reincarnation Logo">
 
-A captivating web application that simulates the experience of reincarnation, offering users a chance to explore different life circumstances across various countries and social backgrounds.
-
-[![Next.js](https://img.shields.io/badge/next.js-14.2.10-black)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-38B2AC)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+ [![Next.js](https://img.shields.io/badge/next.js-14.2.10-black)](https://nextjs.org/)
+ [![TypeScript](https://img.shields.io/badge/typescript-5.x-blue)](https://www.typescriptlang.org/)
+ [![TailwindCSS](https://img.shields.io/badge/tailwindcss-3.x-38B2AC)](https://tailwindcss.com/)
+ [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+</div>
 
 [English](README.md) | [简体中文](README.zh-CN.md)
+
+A captivating web application that simulates the experience of reincarnation, offering users a chance to explore different life circumstances across various countries and social backgrounds.
 
 ## ✨ Features
 
@@ -42,8 +45,8 @@ A captivating web application that simulates the experience of reincarnation, of
 
 1. Clone the repository
 ```bash
-git clone https://github.com/ChanMeng666/journey-of-reincarnation2.git
-cd journey-of-reincarnation2
+git clone https://github.com/ChanMeng666/journey-of-reincarnation.git
+cd journey-of-reincarnation
 ```
 
 2. Install dependencies
@@ -101,6 +104,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Tech Used
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white)
+![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue)
 
 ## Author
 
