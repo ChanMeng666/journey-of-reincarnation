@@ -12,6 +12,10 @@
 
 A captivating web application that simulates the experience of reincarnation, offering users a chance to explore different life circumstances across various countries and social backgrounds.
 
+
+https://github.com/user-attachments/assets/3a3a434f-b14c-46c9-82b8-8c2962702560
+
+
 ![屏幕截图 2024-12-06 012520](https://github.com/user-attachments/assets/d6032568-be00-491d-b1c8-df0afdcaa48f)
 
 ![screencapture-journey-of-reincarnation2-vercel-app-2024-12-06-01_33_36](https://github.com/user-attachments/assets/a6595c93-fb6d-47cd-9930-81f1048581e2)
