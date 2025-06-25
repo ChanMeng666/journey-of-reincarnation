@@ -28,16 +28,6 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
     const [isOpen, setIsOpen] = useState(false);
     const [unlockedModes, setUnlockedModes] = useState<Set<GameMode>>(new Set(['classic']));
 
-    useEffect(() => {
-        const unlocked = new Set<GameMode>();
-        GAME_MODES.forEach(mode => {
-            if (mode.isUnlocked || checkModeUnlock(mode)) {
-                unlocked.add(mode.id);
-            }
-        });
-        setUnlockedModes(unlocked);
-    }, [playerStats]);
-
     const checkModeUnlock = (mode: GameModeConfig): boolean => {
         if (mode.isUnlocked) return true;
         if (!mode.unlockRequirement) return false;
@@ -61,6 +51,16 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
 
         return true;
     };
+
+    useEffect(() => {
+        const unlocked = new Set<GameMode>();
+        GAME_MODES.forEach(mode => {
+            if (mode.isUnlocked || checkModeUnlock(mode)) {
+                unlocked.add(mode.id);
+            }
+        });
+        setUnlockedModes(unlocked);
+    }, [playerStats]);
 
     const getUnlockProgress = (mode: GameModeConfig) => {
         if (!mode.unlockRequirement) return 100;

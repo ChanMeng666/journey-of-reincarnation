@@ -2,7 +2,6 @@
 
 import { MainLayout } from "@/components/layout/main-layout";
 import { StartButton } from "@/components/ui/start-button";
-
 import { CharacterAvatar } from "@/components/ui/character-avatar";
 import { GeneratingAnimation } from "@/components/ui/generating-animation";
 import { StatsCard } from "@/components/ui/stats-card";
@@ -16,8 +15,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import '../i18n/config';
 import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { WorldMap } from "@/components/ui/world-map";
-import { useMusic } from "@/contexts/music-context";
-import '../i18n/config';
 import { TitleWithLogo } from "@/components/ui/title-with-logo";
 import { 
     saveReincarnation, 
@@ -27,14 +24,6 @@ import {
     saveAchievement 
 } from "@/lib/storage";
 import { checkNewAchievements } from "@/lib/achievements";
-import { 
-    initializeLifeJourney, 
-    getNextDecision, 
-    applyDecisionConsequences, 
-    getLifeStageByAge 
-} from '@/lib/life-decisions';
-import { LifeJourneyPanel } from "@/components/ui/life-journey-panel";
-import { LifeDecisionDialog } from "@/components/ui/life-decision-dialog";
 import { GameModeSelector } from "@/components/ui/game-mode-selector";
 import { EnhancedResultCard } from "@/components/ui/enhanced-result-card";
 import { DataVisualization } from "@/components/ui/data-visualization";
@@ -53,14 +42,8 @@ export default function Home() {
     // UI状态
     const [showDataVisualization, setShowDataVisualization] = useState(false);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
-    
-    // 人生决策系统状态
-    const [currentJourney, setCurrentJourney] = useState<any>(null);
-    const [currentDecision, setCurrentDecision] = useState<any>(null);
-    const [isJourneyMode, setIsJourneyMode] = useState(false);
 
     const playSound = useSoundEffects();
-    const { isPlaying, toggleMusic } = useMusic();
 
     // 初始化数据
     useEffect(() => {
@@ -125,12 +108,6 @@ export default function Home() {
             }
         }, 2000);
     };
-
-    useEffect(() => {
-        if (!isPlaying) {
-            toggleMusic();
-        }
-    }, [isPlaying, toggleMusic]);
 
     const currentResult = results[results.length - 1];
 

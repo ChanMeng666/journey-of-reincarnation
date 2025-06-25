@@ -30,12 +30,6 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
     const [chartData, setChartData] = useState<ChartData | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        if (isOpen) {
-            loadData();
-        }
-    }, [isOpen]);
-
     const loadData = async () => {
         setLoading(true);
         try {
@@ -48,6 +42,12 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (isOpen) {
+            loadData();
+        }
+    }, [isOpen]);
 
     const processChartData = (reincarnations: ReincarnationResult[]): ChartData => {
         const countries: Record<string, number> = {};
