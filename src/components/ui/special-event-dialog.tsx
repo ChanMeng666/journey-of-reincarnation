@@ -31,6 +31,18 @@ const EVENT_CONFIG = {
         icon: '👑',
         color: 'from-amber-500/20 to-transparent',
     },
+    timeTraveler: {
+        icon: '⏰',
+        color: 'from-cyan-500/20 to-transparent',
+    },
+    prophetic: {
+        icon: '🔮',
+        color: 'from-indigo-500/20 to-transparent',
+    },
+    miraculous: {
+        icon: '✨',
+        color: 'from-rose-500/20 to-transparent',
+    },
 };
 
 export function SpecialEventDialog({
