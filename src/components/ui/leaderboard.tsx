@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, Medal, Award, Target, Clock, Crown, X } from "lucide-react";
+import { Trophy, Medal, Award, Target, Clock, Crown } from "lucide-react";
 
 interface PlayerData {
     playerName: string;
@@ -112,14 +112,6 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
                         <Trophy className="w-5 h-5" />
                         {t('leaderboard.title')}
                     </DialogTitle>
-                    <Button
-                        onClick={onClose}
-                        variant="ghost"
-                        size="sm"
-                        className="absolute right-4 top-4"
-                    >
-                        <X className="h-4 w-4" />
-                    </Button>
                 </DialogHeader>
                 
                 <div className="space-y-4">
