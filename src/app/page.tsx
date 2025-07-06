@@ -7,7 +7,7 @@ import { GeneratingAnimation } from "@/components/ui/generating-animation";
 import { StatsCard } from "@/components/ui/stats-card";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import { ShareDialog } from "@/components/ui/share-dialog";
-import { SpecialEventDialog } from "@/components/ui/special-event-dialog";
+
 import { AchievementUnlockDialog } from "@/components/ui/achievement-unlock-dialog";
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +42,7 @@ export default function Home() {
     const { t } = useTranslation();
     const [results, setResults] = useState<ReincarnationResult[]>([]);
     const [isGenerating, setIsGenerating] = useState(false);
-    const [specialEvent, setSpecialEvent] = useState<SpecialEventType | null>(null);
+
     const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
     const [showAchievementDialog, setShowAchievementDialog] = useState(false);
     
@@ -130,11 +130,7 @@ export default function Home() {
                 const allReincarnations = await loadReincarnations();
                 const unlockedIds = await getUnlockedAchievementIds();
                 
-                // 调试：成就检查
-                console.log('检查成就 - 轮回结果数量:', allReincarnations.length, '已解锁:', unlockedIds.length);
-                
                 const newUnlockedAchievements = checkNewAchievements(allReincarnations, unlockedIds);
-                console.log('新解锁成就数量:', newUnlockedAchievements.length);
                 
                 // 保存新成就
                 for (const achievement of newUnlockedAchievements) {
@@ -142,13 +138,17 @@ export default function Home() {
                 }
 
                 if (newUnlockedAchievements.length > 0) {
-                    setNewAchievements(newUnlockedAchievements);
-                    setShowAchievementDialog(true);
+                    // 确保成就数组没有 undefined 元素
+                    const validAchievements = newUnlockedAchievements.filter(a => a && a.id && a.rarity);
+                    
+                    if (validAchievements.length > 0) {
+                        setNewAchievements(validAchievements);
+                        setShowAchievementDialog(true);
+                    }
                 }
 
-                // 如果有特殊事件，显示特殊事件对话框
+                // 特殊事件会通过成就系统自动处理，不需要单独的弹窗
                 if (triggeredEvent) {
-                    setSpecialEvent(triggeredEvent);
                     playSound('special');
                 }
             } catch (error) {
@@ -264,13 +264,7 @@ export default function Home() {
                 </AnimatePresence>
             </div>
 
-            {specialEvent && (
-                <SpecialEventDialog
-                    type={specialEvent}
-                    isOpen={true}
-                    onClose={() => setSpecialEvent(null)}
-                />
-            )}
+
 
             {/* 成就解锁弹窗 */}
             <AchievementUnlockDialog

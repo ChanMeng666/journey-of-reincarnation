@@ -45,6 +45,9 @@ export const AchievementUnlockDialog: React.FC<AchievementUnlockDialogProps> = (
 
                 return () => clearInterval(interval);
             }
+        } else {
+            // 如果没有成就或弹窗关闭，重置索引
+            setCurrentIndex(0);
         }
     }, [isOpen, achievements.length]);
 
@@ -70,7 +73,15 @@ export const AchievementUnlockDialog: React.FC<AchievementUnlockDialogProps> = (
 
     if (!isOpen || achievements.length === 0) return null;
 
-    const currentAchievement = achievements[currentIndex];
+    // 确保 currentIndex 在有效范围内
+    const safeCurrentIndex = Math.max(0, Math.min(currentIndex, achievements.length - 1));
+    const currentAchievement = achievements[safeCurrentIndex];
+    
+    // 安全检查：确保当前成就存在
+    if (!currentAchievement) {
+        console.error('当前成就是 undefined:', { currentIndex, safeCurrentIndex, achievementsLength: achievements.length, achievements });
+        return null;
+    }
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -173,8 +184,8 @@ export const AchievementUnlockDialog: React.FC<AchievementUnlockDialogProps> = (
                             {/* 提示文字 */}
                             <div className="text-sm text-gray-500 dark:text-gray-400 mt-6">
                                 {achievements.length > 1 
-                                    ? `${currentIndex + 1} / ${achievements.length} 个新成就`
-                                    : '点击任意处关闭'
+                                    ? `${currentIndex + 1} / ${achievements.length} new achievements`
+                                    : 'Click anywhere to close'
                                 }
                             </div>
                         </motion.div>

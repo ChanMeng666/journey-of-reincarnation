@@ -9,7 +9,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.first_reincarnation.description',
         icon: '🌱',
         rarity: 'common',
-        condition: (results) => results.length >= 1
+        condition: (results) => results.length >= 3
     },
     {
         id: 'explorer',
@@ -19,7 +19,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         rarity: 'common',
         condition: (results) => {
             const countries = new Set(results.map(r => r.country));
-            return countries.size >= 5;
+            return countries.size >= 8;
         }
     },
     {
@@ -28,7 +28,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.seasoned_traveler.description',
         icon: '✈️',
         rarity: 'common',
-        condition: (results) => results.length >= 10
+        condition: (results) => results.length >= 20
     },
 
     // 稀有度相关成就
@@ -38,7 +38,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.rare_life.description',
         icon: '💎',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.rarity === 'rare')
+        condition: (results) => results.filter(r => r.rarity === 'rare').length >= 3
     },
     {
         id: 'epic_destiny',
@@ -46,7 +46,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.epic_destiny.description',
         icon: '⚡',
         rarity: 'epic',
-        condition: (results) => results.some(r => r.rarity === 'epic')
+        condition: (results) => results.filter(r => r.rarity === 'epic').length >= 2
     },
     {
         id: 'legendary_soul',
@@ -54,7 +54,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.legendary_soul.description',
         icon: '👑',
         rarity: 'legendary',
-        condition: (results) => results.some(r => r.rarity === 'legendary')
+        condition: (results) => results.filter(r => r.rarity === 'legendary').length >= 1 && results.length >= 15
     },
 
     // 属性相关成就
@@ -64,7 +64,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.perfect_health.description',
         icon: '💪',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.health === 100)
+        condition: (results) => results.filter(r => r.health === 100).length >= 3
     },
     {
         id: 'lucky_charm',
@@ -72,7 +72,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.lucky_charm.description',
         icon: '🍀',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.luck === 100)
+        condition: (results) => results.filter(r => r.luck === 100).length >= 3
     },
     {
         id: 'centenarian',
@@ -80,7 +80,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.centenarian.description',
         icon: '🎂',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.lifespan >= 100)
+        condition: (results) => results.filter(r => r.lifespan >= 100).length >= 2
     },
 
     // 天赋相关成就
@@ -90,7 +90,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.multi_talented.description',
         icon: '🌟',
         rarity: 'epic',
-        condition: (results) => results.some(r => r.talents.length >= 4)
+        condition: (results) => results.filter(r => r.talents.length >= 4).length >= 2
     },
     {
         id: 'genius',
@@ -98,7 +98,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.genius.description',
         icon: '🧠',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.talents.includes('Mathematical Prodigy'))
+        condition: (results) => results.filter(r => r.talents.includes('Mathematical Prodigy')).length >= 3
     },
     {
         id: 'artist',
@@ -106,7 +106,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.artist.description',
         icon: '🎨',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Artistic Vision'))
+        condition: (results) => results.filter(r => r.talents.includes('Artistic Vision')).length >= 3
     },
 
     // 地理相关成就
@@ -144,7 +144,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         rarity: 'rare',
         condition: (results) => {
             const eras = new Set(results.map(r => r.era));
-            return eras.size >= 3;
+            return eras.size >= 4 && results.length >= 12;
         }
     },
     {
@@ -153,7 +153,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.ancient_soul.description',
         icon: '🏛️',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.era === 'ancient')
+        condition: (results) => results.filter(r => r.era === 'ancient').length >= 3
     },
     {
         id: 'future_vision',
@@ -161,7 +161,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.future_vision.description',
         icon: '🚀',
         rarity: 'epic',
-        condition: (results) => results.some(r => r.era === 'future')
+        condition: (results) => results.filter(r => r.era === 'future').length >= 2
     },
 
     // 社会相关成就
@@ -171,7 +171,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.high_society.description',
         icon: '💰',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.socialClass === 'high')
+        condition: (results) => results.filter(r => r.socialClass === 'high').length >= 3
     },
     {
         id: 'humble_beginnings',
@@ -179,7 +179,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.humble_beginnings.description',
         icon: '🌾',
         rarity: 'common',
-        condition: (results) => results.some(r => r.socialClass === 'low')
+        condition: (results) => results.filter(r => r.socialClass === 'low').length >= 4
     },
 
     // 收集成就
@@ -189,7 +189,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.collector.description',
         icon: '📚',
         rarity: 'epic',
-        condition: (results) => results.length >= 50
+        condition: (results) => results.length >= 75
     },
     {
         id: 'master_collector',
@@ -197,7 +197,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.master_collector.description',
         icon: '🏆',
         rarity: 'legendary',
-        condition: (results) => results.length >= 100
+        condition: (results) => results.length >= 150
     },
 
     // 特殊成就
@@ -207,9 +207,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.golden_life.description',
         icon: '✨',
         rarity: 'legendary',
-        condition: (results) => results.some(r => 
+        condition: (results) => results.filter(r => 
             r.health >= 90 && r.luck >= 90 && r.lifespan >= 90
-        )
+        ).length >= 2
     },
     {
         id: 'renaissance_soul',
@@ -217,10 +217,10 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.renaissance_soul.description',
         icon: '🎭',
         rarity: 'epic',
-        condition: (results) => results.some(r => 
+        condition: (results) => results.filter(r => 
             r.talents.some(t => t.includes('Art')) && 
             r.talents.some(t => t.includes('Math') || t.includes('Science'))
-        )
+        ).length >= 2
     },
     {
         id: 'dragon_power',
@@ -228,9 +228,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.dragon_power.description',
         icon: '🐉',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => 
-            r.country === 'China' && r.health > 80 // 改为基于国家和高健康值的条件
-        )
+        condition: (results) => results.filter(r => 
+            r.country === 'China' && r.health > 80
+        ).length >= 2
     },
     {
         id: 'tiger_spirit',
@@ -238,9 +238,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.tiger_spirit.description',
         icon: '🐅',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => 
-            r.health > 90 && r.luck > 80 // 改为高健康和运气的条件
-        )
+        condition: (results) => results.filter(r => 
+            r.health > 90 && r.luck > 80
+        ).length >= 2
     },
     {
         id: 'spring_child',
@@ -248,9 +248,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.spring_child.description',
         icon: '🌸',
         rarity: 'common',
-        condition: (results) => results.some(r => 
-            r.talents.length >= 2 // 改为拥有多个天赋的条件
-        )
+        condition: (results) => results.filter(r => 
+            r.talents.length >= 2
+        ).length >= 5
     },
     {
         id: 'winter_warrior',
@@ -258,9 +258,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.winter_warrior.description',
         icon: '❄️',
         rarity: 'common',
-        condition: (results) => results.some(r => 
-            r.lifespan > 80 // 改为长寿的条件
-        )
+        condition: (results) => results.filter(r => 
+            r.lifespan > 80
+        ).length >= 4
     },
 
     // 特殊事件成就
@@ -648,9 +648,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.perfect_storm.description',
         icon: '🌪️',
         rarity: 'legendary',
-        condition: (results) => results.some(r => 
+        condition: (results) => results.filter(r => 
             r.health === 100 && r.luck === 100 && r.talents.length >= 5
-        )
+        ).length >= 1 && results.length >= 25
     },
     {
         id: 'world_citizen',
@@ -660,7 +660,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         rarity: 'epic',
         condition: (results) => {
             const countries = new Set(results.map(r => r.country));
-            return countries.size >= 10;
+            return countries.size >= 15 && results.length >= 30;
         }
     },
     {
@@ -671,7 +671,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         rarity: 'epic',
         condition: (results) => {
             const eras = new Set(results.map(r => r.era));
-            return eras.size >= 4;
+            return eras.size >= 5 && results.length >= 25;
         }
     },
     {
@@ -682,7 +682,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         rarity: 'rare',
         condition: (results) => {
             const classes = new Set(results.map(r => r.socialClass));
-            return classes.size >= 3;
+            return classes.size >= 3 && results.length >= 15;
         }
     },
     {
@@ -693,7 +693,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         rarity: 'uncommon',
         condition: (results) => {
             const seasons = new Set(results.map(r => r.birthSeason));
-            return seasons.size >= 4;
+            return seasons.size >= 4 && results.length >= 16;
         }
     },
     {
@@ -705,7 +705,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         condition: (results) => {
             const allTalents = results.flatMap(r => r.talents);
             const uniqueTalents = new Set(allTalents);
-            return uniqueTalents.size >= 12; // 收集12种不同天赋
+            return uniqueTalents.size >= 18 && results.length >= 40;
         }
     },
     {
@@ -714,7 +714,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.immortal_soul.description',
         icon: '👼',
         rarity: 'legendary',
-        condition: (results) => results.some(r => r.lifespan >= 150)
+        condition: (results) => results.filter(r => r.lifespan >= 150).length >= 1 && results.length >= 20
     },
     {
         id: 'brief_candle',
@@ -722,7 +722,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.brief_candle.description',
         icon: '🕯️',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.lifespan <= 20)
+        condition: (results) => results.filter(r => r.lifespan <= 20).length >= 2
     },
     {
         id: 'karma_saint',
@@ -730,9 +730,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.karma_saint.description',
         icon: '😇',
         rarity: 'epic',
-        condition: (results) => results.some(r => 
+        condition: (results) => results.filter(r => 
             r.karmaInfluence && r.karmaInfluence.healthBonus >= 20
-        )
+        ).length >= 2
     },
     {
         id: 'karma_sinner',
@@ -740,9 +740,9 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.karma_sinner.description',
         icon: '😈',
         rarity: 'epic',
-        condition: (results) => results.some(r => 
+        condition: (results) => results.filter(r => 
             r.karmaInfluence && r.karmaInfluence.healthBonus <= -20
-        )
+        ).length >= 2
     },
     {
         id: 'middle_class_hero',
@@ -750,7 +750,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.middle_class_hero.description',
         icon: '🏠',
         rarity: 'common',
-        condition: (results) => results.some(r => r.socialClass === 'middle')
+        condition: (results) => results.filter(r => r.socialClass === 'middle').length >= 5
     },
     {
         id: 'medieval_knight',
@@ -758,7 +758,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.medieval_knight.description',
         icon: '⚔️',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.era === 'medieval')
+        condition: (results) => results.filter(r => r.era === 'medieval').length >= 3
     },
     {
         id: 'modern_citizen',
@@ -766,7 +766,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.modern_citizen.description',
         icon: '🏢',
         rarity: 'common',
-        condition: (results) => results.some(r => r.era === 'modern')
+        condition: (results) => results.filter(r => r.era === 'modern').length >= 6
     }
 ];
 
@@ -781,9 +781,10 @@ export const checkNewAchievements = (
     unlockedAchievementIds: string[]
 ): Achievement[] => {
     const eligibleAchievements = checkAchievements(results);
-    return eligibleAchievements.filter(achievement => 
+    const newAchievements = eligibleAchievements.filter(achievement => 
         !unlockedAchievementIds.includes(achievement.id)
     );
+    return newAchievements;
 };
 
 // 根据稀有度获取成就
