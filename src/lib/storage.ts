@@ -1,4 +1,4 @@
-import type { ReincarnationResult, UserStatistics, GameConfig, Achievement, KarmaProfile, KarmaRecord } from "@/types";
+import type { ReincarnationResult, UserStatistics, GameConfig, Achievement, SavedAchievement, KarmaProfile, KarmaRecord } from "@/types";
 
 // IndexedDB 配置
 const DB_NAME = 'ReincarnationGameDB';
@@ -324,18 +324,24 @@ export const getQuickStats = (): UserStatistics => {
 // 成就系统
 export const saveAchievement = async (achievement: Achievement): Promise<void> => {
     try {
-        await dbManager.put(STORES.ACHIEVEMENTS, {
-            ...achievement,
+        // 只保存可序列化的基本信息，不包含函数
+        const achievementData = {
+            id: achievement.id,
+            nameKey: achievement.nameKey,
+            descriptionKey: achievement.descriptionKey,
+            icon: achievement.icon,
+            rarity: achievement.rarity,
             unlockedAt: Date.now()
-        });
+        };
+        await dbManager.put(STORES.ACHIEVEMENTS, achievementData);
     } catch (error) {
         console.error('Failed to save achievement:', error);
     }
 };
 
-export const getUnlockedAchievements = async (): Promise<Achievement[]> => {
+export const getUnlockedAchievements = async (): Promise<SavedAchievement[]> => {
     try {
-        return await dbManager.getAll<Achievement>(STORES.ACHIEVEMENTS);
+        return await dbManager.getAll<SavedAchievement>(STORES.ACHIEVEMENTS);
     } catch (error) {
         console.error('Failed to load achievements:', error);
         return [];
@@ -353,7 +359,7 @@ export const getUnlockedAchievementIds = async (): Promise<string[]> => {
 
 export const isAchievementUnlocked = async (achievementId: string): Promise<boolean> => {
     try {
-        const achievement = await dbManager.get<Achievement>(STORES.ACHIEVEMENTS, achievementId);
+        const achievement = await dbManager.get<SavedAchievement>(STORES.ACHIEVEMENTS, achievementId);
         return !!achievement;
     } catch {
         return false;
@@ -425,7 +431,16 @@ export const importGameData = async (jsonData: string): Promise<void> => {
         // 导入成就
         if (achievements && Array.isArray(achievements)) {
             for (const achievement of achievements) {
-                await dbManager.add(STORES.ACHIEVEMENTS, achievement);
+                // 确保只保存可序列化的数据
+                const savedAchievement: SavedAchievement = {
+                    id: achievement.id,
+                    nameKey: achievement.nameKey,
+                    descriptionKey: achievement.descriptionKey,
+                    icon: achievement.icon,
+                    rarity: achievement.rarity,
+                    unlockedAt: achievement.unlockedAt || Date.now()
+                };
+                await dbManager.add(STORES.ACHIEVEMENTS, savedAchievement);
             }
         }
 

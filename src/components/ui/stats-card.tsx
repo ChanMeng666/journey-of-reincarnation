@@ -71,6 +71,11 @@ export function StatsCard() {
         };
 
         loadStats();
+        
+        // 添加定期刷新机制
+        const refreshInterval = setInterval(loadStats, 3000); // 每3秒刷新一次
+        
+        return () => clearInterval(refreshInterval);
     }, []);
 
     const getChartColors = () => {

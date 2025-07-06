@@ -116,7 +116,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.china_born.description',
         icon: '🇨🇳',
         rarity: 'common',
-        condition: (results) => results.some(r => r.country === 'China')
+        condition: (results) => results.filter(r => r.country === 'China').length >= 3
     },
     {
         id: 'usa_born',
@@ -124,7 +124,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.usa_born.description',
         icon: '🇺🇸',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'United States')
+        condition: (results) => results.filter(r => r.country === 'United States').length >= 2
     },
     {
         id: 'japan_born',
@@ -132,7 +132,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.japan_born.description',
         icon: '🇯🇵',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Japan')
+        condition: (results) => results.filter(r => r.country === 'Japan').length >= 2
     },
 
     // 时代相关成就
@@ -344,7 +344,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.musical_genius.description',
         icon: '🎵',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Musical Genius'))
+        condition: (results) => results.filter(r => r.talents.includes('Musical Genius')).length >= 2
     },
     {
         id: 'athletic_champion',
@@ -352,7 +352,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.athletic_champion.description',
         icon: '🏆',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Athletic Excellence'))
+        condition: (results) => results.filter(r => r.talents.includes('Athletic Excellence')).length >= 2
     },
     {
         id: 'polyglot',
@@ -360,7 +360,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.polyglot.description',
         icon: '🌐',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Linguistic Mastery'))
+        condition: (results) => results.filter(r => r.talents.includes('Linguistic Mastery')).length >= 2
     },
     {
         id: 'scientific_innovator',
@@ -368,7 +368,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.scientific_innovator.description',
         icon: '🔬',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.talents.includes('Scientific Innovation'))
+        condition: (results) => results.filter(r => r.talents.includes('Scientific Innovation')).length >= 2
     },
     {
         id: 'natural_leader',
@@ -376,7 +376,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.natural_leader.description',
         icon: '👑',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.talents.includes('Leadership Charisma'))
+        condition: (results) => results.filter(r => r.talents.includes('Leadership Charisma')).length >= 2
     },
     {
         id: 'entrepreneur',
@@ -384,7 +384,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.entrepreneur.description',
         icon: '💼',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Entrepreneurial Spirit'))
+        condition: (results) => results.filter(r => r.talents.includes('Entrepreneurial Spirit')).length >= 2
     },
     {
         id: 'healer',
@@ -392,7 +392,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.healer.description',
         icon: '🩺',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Healing Touch'))
+        condition: (results) => results.filter(r => r.talents.includes('Healing Touch')).length >= 2
     },
     {
         id: 'memory_master',
@@ -400,7 +400,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.memory_master.description',
         icon: '🧠',
         rarity: 'rare',
-        condition: (results) => results.some(r => r.talents.includes('Photographic Memory'))
+        condition: (results) => results.filter(r => r.talents.includes('Photographic Memory')).length >= 2
     },
     {
         id: 'empath',
@@ -408,7 +408,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.empath.description',
         icon: '❤️',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Empathic Understanding'))
+        condition: (results) => results.filter(r => r.talents.includes('Empathic Understanding')).length >= 2
     },
     {
         id: 'strategist',
@@ -416,7 +416,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.strategist.description',
         icon: '♟️',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Strategic Mind'))
+        condition: (results) => results.filter(r => r.talents.includes('Strategic Mind')).length >= 2
     },
     {
         id: 'creative_writer',
@@ -424,7 +424,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.creative_writer.description',
         icon: '📝',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Creative Writing'))
+        condition: (results) => results.filter(r => r.talents.includes('Creative Writing')).length >= 2
     },
     {
         id: 'tech_innovator',
@@ -432,7 +432,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.tech_innovator.description',
         icon: '💻',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.talents.includes('Technical Innovation'))
+        condition: (results) => results.filter(r => r.talents.includes('Technical Innovation')).length >= 2
     },
     {
         id: 'social_butterfly',
@@ -440,7 +440,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.social_butterfly.description',
         icon: '🦋',
         rarity: 'common',
-        condition: (results) => results.some(r => r.talents.includes('Social Networking'))
+        condition: (results) => results.filter(r => r.talents.includes('Social Networking')).length >= 3
     },
     {
         id: 'problem_solver',
@@ -448,7 +448,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.problem_solver.description',
         icon: '🧩',
         rarity: 'common',
-        condition: (results) => results.some(r => r.talents.includes('Problem Solving'))
+        condition: (results) => results.filter(r => r.talents.includes('Problem Solving')).length >= 3
     },
 
     // 更多地理成就
@@ -458,7 +458,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.brazil_born.description',
         icon: '🇧🇷',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Brazil')
+        condition: (results) => results.filter(r => r.country === 'Brazil').length >= 2
     },
     {
         id: 'india_born',
@@ -466,7 +466,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.india_born.description',
         icon: '🇮🇳',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'India')
+        condition: (results) => results.filter(r => r.country === 'India').length >= 2
     },
     {
         id: 'russia_born',
@@ -474,7 +474,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.russia_born.description',
         icon: '🇷🇺',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Russia')
+        condition: (results) => results.filter(r => r.country === 'Russia').length >= 2
     },
     {
         id: 'germany_born',
@@ -482,7 +482,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.germany_born.description',
         icon: '🇩🇪',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Germany')
+        condition: (results) => results.filter(r => r.country === 'Germany').length >= 2
     },
     {
         id: 'france_born',
@@ -490,7 +490,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.france_born.description',
         icon: '🇫🇷',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'France')
+        condition: (results) => results.filter(r => r.country === 'France').length >= 2
     },
     {
         id: 'uk_born',
@@ -498,7 +498,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.uk_born.description',
         icon: '🇬🇧',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'United Kingdom')
+        condition: (results) => results.filter(r => r.country === 'United Kingdom').length >= 2
     },
     {
         id: 'canada_born',
@@ -506,7 +506,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.canada_born.description',
         icon: '🇨🇦',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Canada')
+        condition: (results) => results.filter(r => r.country === 'Canada').length >= 2
     },
     {
         id: 'australia_born',
@@ -514,7 +514,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.australia_born.description',
         icon: '🇦🇺',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Australia')
+        condition: (results) => results.filter(r => r.country === 'Australia').length >= 2
     },
     {
         id: 'mexico_born',
@@ -522,7 +522,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.mexico_born.description',
         icon: '🇲🇽',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'Mexico')
+        condition: (results) => results.filter(r => r.country === 'Mexico').length >= 2
     },
     {
         id: 'south_korea_born',
@@ -530,7 +530,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.south_korea_born.description',
         icon: '🇰🇷',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.country === 'South Korea')
+        condition: (results) => results.filter(r => r.country === 'South Korea').length >= 2
     },
 
     // 季节成就
@@ -540,7 +540,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.spring_born.description',
         icon: '🌸',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthSeason === 'spring')
+        condition: (results) => results.filter(r => r.birthSeason === 'spring').length >= 3
     },
     {
         id: 'summer_born',
@@ -548,7 +548,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.summer_born.description',
         icon: '☀️',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthSeason === 'summer')
+        condition: (results) => results.filter(r => r.birthSeason === 'summer').length >= 3
     },
     {
         id: 'autumn_born',
@@ -556,7 +556,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.autumn_born.description',
         icon: '🍂',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthSeason === 'autumn')
+        condition: (results) => results.filter(r => r.birthSeason === 'autumn').length >= 3
     },
     {
         id: 'winter_born',
@@ -564,7 +564,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.winter_born.description',
         icon: '❄️',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthSeason === 'winter')
+        condition: (results) => results.filter(r => r.birthSeason === 'winter').length >= 3
     },
 
     // 性别成就
@@ -574,7 +574,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.male_experience.description',
         icon: '♂️',
         rarity: 'common',
-        condition: (results) => results.some(r => r.gender === 'male')
+        condition: (results) => results.filter(r => r.gender === 'male').length >= 5
     },
     {
         id: 'female_experience',
@@ -582,7 +582,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.female_experience.description',
         icon: '♀️',
         rarity: 'common',
-        condition: (results) => results.some(r => r.gender === 'female')
+        condition: (results) => results.filter(r => r.gender === 'female').length >= 5
     },
     {
         id: 'gender_balance',
@@ -604,7 +604,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.only_child.description',
         icon: '👶',
         rarity: 'common',
-        condition: (results) => results.some(r => r.familyStructure === 'onlyChild')
+        condition: (results) => results.filter(r => r.familyStructure === 'onlyChild').length >= 3
     },
     {
         id: 'sibling_bond',
@@ -612,7 +612,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.sibling_bond.description',
         icon: '👫',
         rarity: 'common',
-        condition: (results) => results.some(r => r.familyStructure === 'siblings')
+        condition: (results) => results.filter(r => r.familyStructure === 'siblings').length >= 3
     },
 
     // 出生地成就
@@ -622,7 +622,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.city_dweller.description',
         icon: '🏙️',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthplace === 'urban')
+        condition: (results) => results.filter(r => r.birthplace === 'urban').length >= 4
     },
     {
         id: 'suburban_life',
@@ -630,7 +630,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.suburban_life.description',
         icon: '🏘️',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthplace === 'suburban')
+        condition: (results) => results.filter(r => r.birthplace === 'suburban').length >= 4
     },
     {
         id: 'rural_roots',
@@ -638,7 +638,7 @@ export const ACHIEVEMENTS: Achievement[] = [
         descriptionKey: 'achievements.rural_roots.description',
         icon: '🌾',
         rarity: 'common',
-        condition: (results) => results.some(r => r.birthplace === 'rural')
+        condition: (results) => results.filter(r => r.birthplace === 'rural').length >= 4
     },
 
     // 复合成就

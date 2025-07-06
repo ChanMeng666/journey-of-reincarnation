@@ -8,9 +8,10 @@ import { StatsCard } from "@/components/ui/stats-card";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import { ShareDialog } from "@/components/ui/share-dialog";
 import { SpecialEventDialog } from "@/components/ui/special-event-dialog";
+import { AchievementUnlockDialog } from "@/components/ui/achievement-unlock-dialog";
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { ReincarnationResult, SpecialEventType, GameMode, ModeSpecificResult, KarmaProfile } from "@/types";
+import type { ReincarnationResult, SpecialEventType, GameMode, ModeSpecificResult, KarmaProfile, Achievement } from "@/types";
 import { generateReincarnation } from "@/lib/reincarnation";
 import { motion, AnimatePresence } from "framer-motion";
 import '../i18n/config';
@@ -42,7 +43,8 @@ export default function Home() {
     const [results, setResults] = useState<ReincarnationResult[]>([]);
     const [isGenerating, setIsGenerating] = useState(false);
     const [specialEvent, setSpecialEvent] = useState<SpecialEventType | null>(null);
-    const [newAchievements, setNewAchievements] = useState<string[]>([]);
+    const [newAchievements, setNewAchievements] = useState<Achievement[]>([]);
+    const [showAchievementDialog, setShowAchievementDialog] = useState(false);
     
     // 游戏模式状态
     const [selectedMode, setSelectedMode] = useState<GameMode>('classic');
@@ -127,7 +129,12 @@ export default function Home() {
                 // 检查新成就（从数据库读取最新的轮回结果数据）
                 const allReincarnations = await loadReincarnations();
                 const unlockedIds = await getUnlockedAchievementIds();
+                
+                // 调试：成就检查
+                console.log('检查成就 - 轮回结果数量:', allReincarnations.length, '已解锁:', unlockedIds.length);
+                
                 const newUnlockedAchievements = checkNewAchievements(allReincarnations, unlockedIds);
+                console.log('新解锁成就数量:', newUnlockedAchievements.length);
                 
                 // 保存新成就
                 for (const achievement of newUnlockedAchievements) {
@@ -135,8 +142,8 @@ export default function Home() {
                 }
 
                 if (newUnlockedAchievements.length > 0) {
-                    setNewAchievements(newUnlockedAchievements.map(a => t(a.nameKey)));
-                    setTimeout(() => setNewAchievements([]), 5000); // 5秒后清除通知
+                    setNewAchievements(newUnlockedAchievements);
+                    setShowAchievementDialog(true);
                 }
 
                 // 如果有特殊事件，显示特殊事件对话框
@@ -265,35 +272,15 @@ export default function Home() {
                 />
             )}
 
-            {/* 成就通知 */}
-            <AnimatePresence>
-                {newAchievements.length > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -50 }}
-                        className="fixed top-4 right-4 z-50 space-y-2"
-                    >
-                        {newAchievements.map((achievement, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-lg shadow-lg"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <span className="text-lg">🏆</span>
-                                    <div>
-                                        <div className="font-bold text-sm">{t('achievements.achievementUnlocked')}</div>
-                                        <div className="text-xs">{achievement}</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* 成就解锁弹窗 */}
+            <AchievementUnlockDialog
+                achievements={newAchievements}
+                isOpen={showAchievementDialog}
+                onClose={() => {
+                    setShowAchievementDialog(false);
+                    setNewAchievements([]);
+                }}
+            />
 
             {/* 数据可视化对话框 */}
             <DataVisualization

@@ -88,6 +88,16 @@ export interface Achievement {
     unlockedAt?: number;
 }
 
+// 保存到数据库的成就对象（不含函数）
+export interface SavedAchievement {
+    id: string;
+    nameKey: string;
+    descriptionKey: string;
+    icon: string;
+    rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+    unlockedAt: number;
+}
+
 export interface UserStatistics {
     totalReincarnations: number;
     favoriteCountry: string;
