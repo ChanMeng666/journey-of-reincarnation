@@ -21,6 +21,26 @@ interface Position {
     zoom: number;
 }
 
+// 国家名称映射：将重生系统中的国家名称映射到地图数据中的实际名称
+const COUNTRY_NAME_MAPPING: Record<string, string[]> = {
+    'United States': ['United States of America', 'United States'],
+    'United Kingdom': ['United Kingdom', 'United Kingdom of Great Britain and Northern Ireland'],
+    'Russia': ['Russia', 'Russian Federation'],
+    'China': ['China'],
+    'India': ['India'],
+    'Indonesia': ['Indonesia'],
+    'Pakistan': ['Pakistan'],
+    'Brazil': ['Brazil'],
+    'Nigeria': ['Nigeria'],
+    'Bangladesh': ['Bangladesh'],
+    'Mexico': ['Mexico'],
+    'Japan': ['Japan'],
+    'Germany': ['Germany'],
+    'France': ['France'],
+};
+
+
+
 export function WorldMap({ country, className }: WorldMapProps) {
     const { t } = useTranslation();
 
@@ -32,6 +52,33 @@ export function WorldMap({ country, className }: WorldMapProps) {
     // 更新处理函数的类型
     const handleMoveEnd = (position: Position) => {
         setPosition(position);
+    };
+
+    // 检查是否应该高亮显示该地理区域
+    const isCountryHighlighted = (geo: { properties: Record<string, unknown> }, targetCountry: string): boolean => {
+        // 获取地理区域的所有可能名称
+        const geoNames = [
+            geo.properties.name,
+            geo.properties.ADMIN,
+            geo.properties.NAME,
+            geo.properties.name_long,
+            geo.properties.brk_name,
+            geo.properties.admin,
+            geo.properties.formal_en,
+        ].filter(Boolean) as string[];
+
+        // 获取目标国家的所有可能映射名称
+        const targetNames = COUNTRY_NAME_MAPPING[targetCountry] || [targetCountry];
+
+        // 检查是否有任何匹配
+        return targetNames.some(targetName => 
+            geoNames.some(geoName => 
+                geoName && (
+                    geoName === targetName || 
+                    geoName.toLowerCase() === targetName.toLowerCase()
+                )
+            )
+        );
     };
 
     return (
@@ -64,10 +111,7 @@ export function WorldMap({ country, className }: WorldMapProps) {
                                 <Geographies geography="/custom.geo.json">
                                     {({ geographies }) =>
                                         geographies.map((geo) => {
-                                            const isHighlighted =
-                                                geo.properties.name === country ||
-                                                geo.properties.ADMIN === country ||
-                                                geo.properties.NAME === country;
+                                            const isHighlighted = isCountryHighlighted(geo, country);
 
                                             return (
                                                 <Geography

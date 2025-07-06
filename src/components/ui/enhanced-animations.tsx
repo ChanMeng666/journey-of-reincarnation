@@ -211,12 +211,6 @@ export const GlowButton: React.FC<GlowButtonProps> = ({
             whileTap={disabled ? {} : { scale: 0.95 }}
             transition={{ duration: 0.2 }}
         >
-            <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-lg"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-            />
             {children}
         </motion.button>
     );

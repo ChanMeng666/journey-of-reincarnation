@@ -13,7 +13,7 @@ export function TitleWithLogo() {
                     width={100}
                     height={100}
                 />
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-4xl font-bold text-white drop-shadow-lg">
                     {t('title')}
                 </h1>
             </div>
