@@ -89,7 +89,21 @@ export default function Home() {
                 const { result: newResult, modeResult, updatedKarmaProfile } = generateReincarnation(selectedMode, karmaProfile || undefined);
                 setModeSpecificResult(modeResult);
                 
-                // 保存到数据库
+                // 特殊事件触发 - 基于稀有度调整概率（在保存和成就检查之前进行）
+                const eventProbability = newResult.rarity === 'legendary' ? 0.8 : 
+                                       newResult.rarity === 'epic' ? 0.5 : 
+                                       newResult.rarity === 'rare' ? 0.3 : 0.1;
+                
+                let triggeredEvent: SpecialEventType | null = null;
+                if (Math.random() < eventProbability) {
+                    const events: SpecialEventType[] = ['twinBirth', 'prodigy', 'historicalFigure', 'timeTraveler', 'prophetic', 'miraculous'];
+                    triggeredEvent = events[Math.floor(Math.random() * events.length)];
+                    
+                    // 将特殊事件记录到轮回结果中（在保存之前）
+                    newResult.specialEvents = [triggeredEvent];
+                }
+                
+                // 保存到数据库（现在包含了特殊事件信息）
                 await saveReincarnation(newResult);
                 
                 // 保存业力事件
@@ -110,7 +124,7 @@ export default function Home() {
                 setIsGenerating(false);
                 playSound('complete');
 
-                // 检查新成就
+                // 检查新成就（现在轮回结果已经包含特殊事件信息）
                 const updatedResults = [...results, newResult];
                 const unlockedIds = await getUnlockedAchievementIds();
                 const newUnlockedAchievements = checkNewAchievements(updatedResults, unlockedIds);
@@ -125,21 +139,8 @@ export default function Home() {
                     setTimeout(() => setNewAchievements([]), 5000); // 5秒后清除通知
                 }
 
-                // 特殊事件触发 - 基于稀有度调整概率
-                const eventProbability = newResult.rarity === 'legendary' ? 0.8 : 
-                                       newResult.rarity === 'epic' ? 0.5 : 
-                                       newResult.rarity === 'rare' ? 0.3 : 0.1;
-                
-                if (Math.random() < eventProbability) {
-                    const events: SpecialEventType[] = ['twinBirth', 'prodigy', 'historicalFigure', 'timeTraveler', 'prophetic', 'miraculous'];
-                    const triggeredEvent = events[Math.floor(Math.random() * events.length)];
-                    
-                    // 将特殊事件记录到轮回结果中
-                    newResult.specialEvents = [triggeredEvent];
-                    
-                    // 重新保存包含特殊事件的轮回结果
-                    await saveReincarnation(newResult);
-                    
+                // 如果有特殊事件，显示特殊事件对话框
+                if (triggeredEvent) {
                     setSpecialEvent(triggeredEvent);
                     playSound('special');
                 }
