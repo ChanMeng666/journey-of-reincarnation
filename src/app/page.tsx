@@ -124,10 +124,10 @@ export default function Home() {
                 setIsGenerating(false);
                 playSound('complete');
 
-                // 检查新成就（现在轮回结果已经包含特殊事件信息）
-                const updatedResults = [...results, newResult];
+                // 检查新成就（从数据库读取最新的轮回结果数据）
+                const allReincarnations = await loadReincarnations();
                 const unlockedIds = await getUnlockedAchievementIds();
-                const newUnlockedAchievements = checkNewAchievements(updatedResults, unlockedIds);
+                const newUnlockedAchievements = checkNewAchievements(allReincarnations, unlockedIds);
                 
                 // 保存新成就
                 for (const achievement of newUnlockedAchievements) {
