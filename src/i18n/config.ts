@@ -442,6 +442,7 @@ const resources = {
                 completed: 'completed',
                 all: 'All',
                 noAchievements: 'No achievements found',
+                achievementUnlocked: 'Achievement Unlocked!',
                 rarity: {
                     common: 'Common',
                     uncommon: 'Uncommon',
