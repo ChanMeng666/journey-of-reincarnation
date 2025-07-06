@@ -132,7 +132,15 @@ export default function Home() {
                 
                 if (Math.random() < eventProbability) {
                     const events: SpecialEventType[] = ['twinBirth', 'prodigy', 'historicalFigure', 'timeTraveler', 'prophetic', 'miraculous'];
-                    setSpecialEvent(events[Math.floor(Math.random() * events.length)]);
+                    const triggeredEvent = events[Math.floor(Math.random() * events.length)];
+                    
+                    // 将特殊事件记录到轮回结果中
+                    newResult.specialEvents = [triggeredEvent];
+                    
+                    // 重新保存包含特殊事件的轮回结果
+                    await saveReincarnation(newResult);
+                    
+                    setSpecialEvent(triggeredEvent);
                     playSound('special');
                 }
             } catch (error) {

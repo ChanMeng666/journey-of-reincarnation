@@ -73,6 +73,7 @@ export interface ReincarnationResult {
         specialAbilities: string[];
     };
     karmaEvents?: KarmaRecord[];
+    specialEvents?: SpecialEventType[];
 }
 
 export type SpecialEventType = 'twinBirth' | 'prodigy' | 'historicalFigure' | 'timeTraveler' | 'prophetic' | 'miraculous';

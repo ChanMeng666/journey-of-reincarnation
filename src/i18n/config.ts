@@ -561,6 +561,246 @@ const resources = {
                 winter_warrior: {
                     name: 'Winter Warrior',
                     description: 'Be born in winter'
+                },
+                
+                // Special Event Achievements
+                time_anomaly: {
+                    name: 'Time Anomaly',
+                    description: 'Experience a temporal disturbance'
+                },
+                twin_soul: {
+                    name: 'Twin Soul',
+                    description: 'Be born as twins'
+                },
+                child_prodigy: {
+                    name: 'Child Prodigy',
+                    description: 'Be born with extraordinary talents'
+                },
+                historical_figure: {
+                    name: 'Historical Figure',
+                    description: 'Be destined to make history'
+                },
+                prophetic_vision: {
+                    name: 'Prophetic Vision',
+                    description: 'Be blessed with the gift of foresight'
+                },
+                miraculous_event: {
+                    name: 'Miraculous Event',
+                    description: 'Experience something extraordinary'
+                },
+                special_event_collector: {
+                    name: 'Special Event Collector',
+                    description: 'Experience all types of special events'
+                },
+                
+                // Talent Achievements
+                musical_genius: {
+                    name: 'Musical Genius',
+                    description: 'Be born with musical talent'
+                },
+                athletic_champion: {
+                    name: 'Athletic Champion',
+                    description: 'Be born with athletic excellence'
+                },
+                polyglot: {
+                    name: 'Polyglot',
+                    description: 'Be born with linguistic mastery'
+                },
+                scientific_innovator: {
+                    name: 'Scientific Innovator',
+                    description: 'Be born with scientific innovation talent'
+                },
+                natural_leader: {
+                    name: 'Natural Leader',
+                    description: 'Be born with leadership charisma'
+                },
+                entrepreneur: {
+                    name: 'Entrepreneur',
+                    description: 'Be born with entrepreneurial spirit'
+                },
+                healer: {
+                    name: 'Healer',
+                    description: 'Be born with healing touch'
+                },
+                memory_master: {
+                    name: 'Memory Master',
+                    description: 'Be born with photographic memory'
+                },
+                empath: {
+                    name: 'Empath',
+                    description: 'Be born with empathic understanding'
+                },
+                strategist: {
+                    name: 'Strategist',
+                    description: 'Be born with strategic mind'
+                },
+                creative_writer: {
+                    name: 'Creative Writer',
+                    description: 'Be born with creative writing talent'
+                },
+                tech_innovator: {
+                    name: 'Tech Innovator',
+                    description: 'Be born with technical innovation'
+                },
+                social_butterfly: {
+                    name: 'Social Butterfly',
+                    description: 'Be born with social networking skills'
+                },
+                problem_solver: {
+                    name: 'Problem Solver',
+                    description: 'Be born with problem solving abilities'
+                },
+                
+                // Geographic Achievements
+                brazil_born: {
+                    name: 'Brazilian Spirit',
+                    description: 'Be born in Brazil'
+                },
+                india_born: {
+                    name: 'Indian Heritage',
+                    description: 'Be born in India'
+                },
+                russia_born: {
+                    name: 'Russian Soul',
+                    description: 'Be born in Russia'
+                },
+                germany_born: {
+                    name: 'German Precision',
+                    description: 'Be born in Germany'
+                },
+                france_born: {
+                    name: 'French Elegance',
+                    description: 'Be born in France'
+                },
+                uk_born: {
+                    name: 'British Heritage',
+                    description: 'Be born in the United Kingdom'
+                },
+                canada_born: {
+                    name: 'Canadian Kindness',
+                    description: 'Be born in Canada'
+                },
+                australia_born: {
+                    name: 'Australian Adventure',
+                    description: 'Be born in Australia'
+                },
+                mexico_born: {
+                    name: 'Mexican Culture',
+                    description: 'Be born in Mexico'
+                },
+                south_korea_born: {
+                    name: 'Korean Innovation',
+                    description: 'Be born in South Korea'
+                },
+                
+                // Season Achievements
+                spring_born: {
+                    name: 'Spring Born',
+                    description: 'Be born in spring'
+                },
+                summer_born: {
+                    name: 'Summer Born',
+                    description: 'Be born in summer'
+                },
+                autumn_born: {
+                    name: 'Autumn Born',
+                    description: 'Be born in autumn'
+                },
+                winter_born: {
+                    name: 'Winter Born',
+                    description: 'Be born in winter'
+                },
+                
+                // Gender Achievements
+                male_experience: {
+                    name: 'Male Experience',
+                    description: 'Experience life as a male'
+                },
+                female_experience: {
+                    name: 'Female Experience',
+                    description: 'Experience life as a female'
+                },
+                gender_balance: {
+                    name: 'Gender Balance',
+                    description: 'Experience life as both genders multiple times'
+                },
+                
+                // Family Structure Achievements
+                only_child: {
+                    name: 'Only Child',
+                    description: 'Be born as an only child'
+                },
+                sibling_bond: {
+                    name: 'Sibling Bond',
+                    description: 'Be born with siblings'
+                },
+                
+                // Birthplace Achievements
+                city_dweller: {
+                    name: 'City Dweller',
+                    description: 'Be born in an urban area'
+                },
+                suburban_life: {
+                    name: 'Suburban Life',
+                    description: 'Be born in a suburban area'
+                },
+                rural_roots: {
+                    name: 'Rural Roots',
+                    description: 'Be born in a rural area'
+                },
+                
+                // Complex Achievements
+                perfect_storm: {
+                    name: 'Perfect Storm',
+                    description: 'Achieve maximum health, luck, and multiple talents'
+                },
+                world_citizen: {
+                    name: 'World Citizen',
+                    description: 'Be born in 10 different countries'
+                },
+                era_master: {
+                    name: 'Era Master',
+                    description: 'Experience all historical eras'
+                },
+                class_consciousness: {
+                    name: 'Class Consciousness',
+                    description: 'Experience all social classes'
+                },
+                seasonal_cycle: {
+                    name: 'Seasonal Cycle',
+                    description: 'Be born in all seasons'
+                },
+                talent_master: {
+                    name: 'Talent Master',
+                    description: 'Collect 12 different talents'
+                },
+                immortal_soul: {
+                    name: 'Immortal Soul',
+                    description: 'Live to 150 years or more'
+                },
+                brief_candle: {
+                    name: 'Brief Candle',
+                    description: 'Live 20 years or less'
+                },
+                karma_saint: {
+                    name: 'Karma Saint',
+                    description: 'Achieve high positive karma'
+                },
+                karma_sinner: {
+                    name: 'Karma Sinner',
+                    description: 'Accumulate negative karma'
+                },
+                middle_class_hero: {
+                    name: 'Middle Class Hero',
+                    description: 'Be born into middle class'
+                },
+                medieval_knight: {
+                    name: 'Medieval Knight',
+                    description: 'Be born in medieval times'
+                },
+                modern_citizen: {
+                    name: 'Modern Citizen',
+                    description: 'Be born in modern times'
                 }
             }
         }
@@ -1052,6 +1292,246 @@ const resources = {
                 winter_warrior: {
                     name: '冬之战士',
                     description: '出生在冬天'
+                },
+                
+                // 特殊事件成就
+                time_anomaly: {
+                    name: '时空异常',
+                    description: '经历时间扭曲现象'
+                },
+                twin_soul: {
+                    name: '双生灵魂',
+                    description: '作为双胞胎出生'
+                },
+                child_prodigy: {
+                    name: '神童天赋',
+                    description: '天生拥有非凡才能'
+                },
+                historical_figure: {
+                    name: '历史人物',
+                    description: '注定要创造历史'
+                },
+                prophetic_vision: {
+                    name: '预言之眼',
+                    description: '获得预知未来的天赋'
+                },
+                miraculous_event: {
+                    name: '奇迹事件',
+                    description: '经历非凡的奇迹'
+                },
+                special_event_collector: {
+                    name: '特殊事件收集者',
+                    description: '体验所有类型的特殊事件'
+                },
+                
+                // 天赋成就
+                musical_genius: {
+                    name: '音乐天才',
+                    description: '天生拥有音乐天赋'
+                },
+                athletic_champion: {
+                    name: '运动冠军',
+                    description: '天生拥有运动天赋'
+                },
+                polyglot: {
+                    name: '语言大师',
+                    description: '天生拥有语言天赋'
+                },
+                scientific_innovator: {
+                    name: '科学创新者',
+                    description: '天生拥有科学创新天赋'
+                },
+                natural_leader: {
+                    name: '天生领袖',
+                    description: '天生拥有领导魅力'
+                },
+                entrepreneur: {
+                    name: '企业家',
+                    description: '天生拥有创业精神'
+                },
+                healer: {
+                    name: '治愈者',
+                    description: '天生拥有治愈之触'
+                },
+                memory_master: {
+                    name: '记忆大师',
+                    description: '天生拥有过目不忘的能力'
+                },
+                empath: {
+                    name: '共情者',
+                    description: '天生拥有共情理解能力'
+                },
+                strategist: {
+                    name: '战略家',
+                    description: '天生拥有战略思维'
+                },
+                creative_writer: {
+                    name: '创意作家',
+                    description: '天生拥有创意写作天赋'
+                },
+                tech_innovator: {
+                    name: '技术创新者',
+                    description: '天生拥有技术创新天赋'
+                },
+                social_butterfly: {
+                    name: '社交达人',
+                    description: '天生拥有社交天赋'
+                },
+                problem_solver: {
+                    name: '问题解决者',
+                    description: '天生拥有解决问题的能力'
+                },
+                
+                // 地理成就
+                brazil_born: {
+                    name: '巴西精神',
+                    description: '出生在巴西'
+                },
+                india_born: {
+                    name: '印度传承',
+                    description: '出生在印度'
+                },
+                russia_born: {
+                    name: '俄罗斯之魂',
+                    description: '出生在俄罗斯'
+                },
+                germany_born: {
+                    name: '德国精密',
+                    description: '出生在德国'
+                },
+                france_born: {
+                    name: '法国优雅',
+                    description: '出生在法国'
+                },
+                uk_born: {
+                    name: '英国传统',
+                    description: '出生在英国'
+                },
+                canada_born: {
+                    name: '加拿大友善',
+                    description: '出生在加拿大'
+                },
+                australia_born: {
+                    name: '澳洲冒险',
+                    description: '出生在澳大利亚'
+                },
+                mexico_born: {
+                    name: '墨西哥文化',
+                    description: '出生在墨西哥'
+                },
+                south_korea_born: {
+                    name: '韩国创新',
+                    description: '出生在韩国'
+                },
+                
+                // 季节成就
+                spring_born: {
+                    name: '春日出生',
+                    description: '出生在春天'
+                },
+                summer_born: {
+                    name: '夏日出生',
+                    description: '出生在夏天'
+                },
+                autumn_born: {
+                    name: '秋日出生',
+                    description: '出生在秋天'
+                },
+                winter_born: {
+                    name: '冬日出生',
+                    description: '出生在冬天'
+                },
+                
+                // 性别成就
+                male_experience: {
+                    name: '男性体验',
+                    description: '体验男性的人生'
+                },
+                female_experience: {
+                    name: '女性体验',
+                    description: '体验女性的人生'
+                },
+                gender_balance: {
+                    name: '性别平衡',
+                    description: '多次体验不同性别的人生'
+                },
+                
+                // 家庭结构成就
+                only_child: {
+                    name: '独生子女',
+                    description: '作为独生子女出生'
+                },
+                sibling_bond: {
+                    name: '兄弟姐妹之情',
+                    description: '与兄弟姐妹一起出生'
+                },
+                
+                // 出生地成就
+                city_dweller: {
+                    name: '城市居民',
+                    description: '出生在城市地区'
+                },
+                suburban_life: {
+                    name: '郊区生活',
+                    description: '出生在郊区地区'
+                },
+                rural_roots: {
+                    name: '乡村根源',
+                    description: '出生在乡村地区'
+                },
+                
+                // 复合成就
+                perfect_storm: {
+                    name: '完美风暴',
+                    description: '同时达到最高健康、运气和多重天赋'
+                },
+                world_citizen: {
+                    name: '世界公民',
+                    description: '在10个不同国家出生'
+                },
+                era_master: {
+                    name: '时代大师',
+                    description: '体验所有历史时代'
+                },
+                class_consciousness: {
+                    name: '阶级意识',
+                    description: '体验所有社会阶层'
+                },
+                seasonal_cycle: {
+                    name: '四季轮回',
+                    description: '在所有季节出生'
+                },
+                talent_master: {
+                    name: '天赋大师',
+                    description: '收集12种不同天赋'
+                },
+                immortal_soul: {
+                    name: '不朽之魂',
+                    description: '活到150岁或以上'
+                },
+                brief_candle: {
+                    name: '短暂烛光',
+                    description: '寿命20岁或以下'
+                },
+                karma_saint: {
+                    name: '业力圣者',
+                    description: '积累高正业力'
+                },
+                karma_sinner: {
+                    name: '业力罪人',
+                    description: '积累负业力'
+                },
+                middle_class_hero: {
+                    name: '中产英雄',
+                    description: '出生在中产阶级'
+                },
+                medieval_knight: {
+                    name: '中世纪骑士',
+                    description: '出生在中世纪时代'
+                },
+                modern_citizen: {
+                    name: '现代公民',
+                    description: '出生在现代时代'
                 }
             }
         }
