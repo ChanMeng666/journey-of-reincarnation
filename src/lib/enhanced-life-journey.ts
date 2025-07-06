@@ -52,6 +52,18 @@ export type MajorEventType =
     | 'financial_crisis' 
     | 'inheritance';
 
+// 定义具体的属性类型
+export interface AttributeChanges {
+    health?: number;
+    wealth?: number;
+    happiness?: number;
+    intelligence?: number;
+    charisma?: number;
+    creativity?: number;
+    resilience?: number;
+    reputation?: number;
+}
+
 // 生命决策选项
 export interface EnhancedDecisionOption {
     id: string;
@@ -67,7 +79,7 @@ export interface EnhancedDecisionOption {
         karma?: number;
     };
     consequences: {
-        attributes?: Record<string, number>;
+        attributes?: AttributeChanges;
         relationships?: Record<string, number>;
         career?: string;
         karma?: number;
