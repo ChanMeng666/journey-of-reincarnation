@@ -5,16 +5,16 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 基础成就
     {
         id: 'first_reincarnation',
-        name: 'First Journey',
-        description: 'Complete your first reincarnation',
+        nameKey: 'achievements.first_reincarnation.name',
+        descriptionKey: 'achievements.first_reincarnation.description',
         icon: '🌱',
         rarity: 'common',
         condition: (results) => results.length >= 1
     },
     {
         id: 'explorer',
-        name: 'World Explorer',
-        description: 'Be reincarnated in 5 different countries',
+        nameKey: 'achievements.explorer.name',
+        descriptionKey: 'achievements.explorer.description',
         icon: '🌍',
         rarity: 'common',
         condition: (results) => {
@@ -24,8 +24,8 @@ export const ACHIEVEMENTS: Achievement[] = [
     },
     {
         id: 'seasoned_traveler',
-        name: 'Seasoned Traveler',
-        description: 'Experience 10 reincarnations',
+        nameKey: 'achievements.seasoned_traveler.name',
+        descriptionKey: 'achievements.seasoned_traveler.description',
         icon: '✈️',
         rarity: 'common',
         condition: (results) => results.length >= 10
@@ -34,24 +34,24 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 稀有度相关成就
     {
         id: 'rare_life',
-        name: 'Rare Life',
-        description: 'Experience a rare reincarnation',
+        nameKey: 'achievements.rare_life.name',
+        descriptionKey: 'achievements.rare_life.description',
         icon: '💎',
         rarity: 'rare',
         condition: (results) => results.some(r => r.rarity === 'rare')
     },
     {
         id: 'epic_destiny',
-        name: 'Epic Destiny',
-        description: 'Achieve an epic reincarnation',
+        nameKey: 'achievements.epic_destiny.name',
+        descriptionKey: 'achievements.epic_destiny.description',
         icon: '⚡',
         rarity: 'epic',
         condition: (results) => results.some(r => r.rarity === 'epic')
     },
     {
         id: 'legendary_soul',
-        name: 'Legendary Soul',
-        description: 'Unlock a legendary reincarnation',
+        nameKey: 'achievements.legendary_soul.name',
+        descriptionKey: 'achievements.legendary_soul.description',
         icon: '👑',
         rarity: 'legendary',
         condition: (results) => results.some(r => r.rarity === 'legendary')
@@ -60,24 +60,24 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 属性相关成就
     {
         id: 'perfect_health',
-        name: 'Perfect Health',
-        description: 'Be born with 100 health points',
+        nameKey: 'achievements.perfect_health.name',
+        descriptionKey: 'achievements.perfect_health.description',
         icon: '💪',
         rarity: 'rare',
         condition: (results) => results.some(r => r.health === 100)
     },
     {
         id: 'lucky_charm',
-        name: 'Lucky Charm',
-        description: 'Achieve maximum luck (100)',
+        nameKey: 'achievements.lucky_charm.name',
+        descriptionKey: 'achievements.lucky_charm.description',
         icon: '🍀',
         rarity: 'rare',
         condition: (results) => results.some(r => r.luck === 100)
     },
     {
         id: 'centenarian',
-        name: 'Centenarian',
-        description: 'Live to 100 years or more',
+        nameKey: 'achievements.centenarian.name',
+        descriptionKey: 'achievements.centenarian.description',
         icon: '🎂',
         rarity: 'uncommon',
         condition: (results) => results.some(r => r.lifespan >= 100)
@@ -86,24 +86,24 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 天赋相关成就
     {
         id: 'multi_talented',
-        name: 'Multi-Talented',
-        description: 'Be born with 4 or more talents',
+        nameKey: 'achievements.multi_talented.name',
+        descriptionKey: 'achievements.multi_talented.description',
         icon: '🌟',
         rarity: 'epic',
         condition: (results) => results.some(r => r.talents.length >= 4)
     },
     {
         id: 'genius',
-        name: 'Genius',
-        description: 'Be born as a Mathematical Prodigy',
+        nameKey: 'achievements.genius.name',
+        descriptionKey: 'achievements.genius.description',
         icon: '🧠',
         rarity: 'rare',
         condition: (results) => results.some(r => r.talents.includes('Mathematical Prodigy'))
     },
     {
         id: 'artist',
-        name: 'Born Artist',
-        description: 'Be born with Artistic Vision',
+        nameKey: 'achievements.artist.name',
+        descriptionKey: 'achievements.artist.description',
         icon: '🎨',
         rarity: 'uncommon',
         condition: (results) => results.some(r => r.talents.includes('Artistic Vision'))
@@ -112,24 +112,24 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 地理相关成就
     {
         id: 'china_born',
-        name: 'Middle Kingdom',
-        description: 'Be born in China',
+        nameKey: 'achievements.china_born.name',
+        descriptionKey: 'achievements.china_born.description',
         icon: '🇨🇳',
         rarity: 'common',
         condition: (results) => results.some(r => r.country === 'China')
     },
     {
         id: 'usa_born',
-        name: 'American Dream',
-        description: 'Be born in the United States',
+        nameKey: 'achievements.usa_born.name',
+        descriptionKey: 'achievements.usa_born.description',
         icon: '🇺🇸',
         rarity: 'uncommon',
         condition: (results) => results.some(r => r.country === 'United States')
     },
     {
         id: 'japan_born',
-        name: 'Land of the Rising Sun',
-        description: 'Be born in Japan',
+        nameKey: 'achievements.japan_born.name',
+        descriptionKey: 'achievements.japan_born.description',
         icon: '🇯🇵',
         rarity: 'uncommon',
         condition: (results) => results.some(r => r.country === 'Japan')
@@ -138,8 +138,8 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 时代相关成就
     {
         id: 'time_traveler',
-        name: 'Time Traveler',
-        description: 'Experience reincarnations in different eras',
+        nameKey: 'achievements.time_traveler.name',
+        descriptionKey: 'achievements.time_traveler.description',
         icon: '⏰',
         rarity: 'rare',
         condition: (results) => {
@@ -149,16 +149,16 @@ export const ACHIEVEMENTS: Achievement[] = [
     },
     {
         id: 'ancient_soul',
-        name: 'Ancient Soul',
-        description: 'Be reincarnated in ancient times',
+        nameKey: 'achievements.ancient_soul.name',
+        descriptionKey: 'achievements.ancient_soul.description',
         icon: '🏛️',
         rarity: 'rare',
         condition: (results) => results.some(r => r.era === 'ancient')
     },
     {
         id: 'future_vision',
-        name: 'Future Vision',
-        description: 'Be born in the future era',
+        nameKey: 'achievements.future_vision.name',
+        descriptionKey: 'achievements.future_vision.description',
         icon: '🚀',
         rarity: 'epic',
         condition: (results) => results.some(r => r.era === 'future')
@@ -167,16 +167,16 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 社会相关成就
     {
         id: 'high_society',
-        name: 'High Society',
-        description: 'Be born into high social class',
+        nameKey: 'achievements.high_society.name',
+        descriptionKey: 'achievements.high_society.description',
         icon: '💰',
         rarity: 'uncommon',
         condition: (results) => results.some(r => r.socialClass === 'high')
     },
     {
         id: 'humble_beginnings',
-        name: 'Humble Beginnings',
-        description: 'Be born into low social class',
+        nameKey: 'achievements.humble_beginnings.name',
+        descriptionKey: 'achievements.humble_beginnings.description',
         icon: '🌾',
         rarity: 'common',
         condition: (results) => results.some(r => r.socialClass === 'low')
@@ -185,26 +185,26 @@ export const ACHIEVEMENTS: Achievement[] = [
     // 收集成就
     {
         id: 'collector',
-        name: 'Life Collector',
-        description: 'Experience 50 reincarnations',
+        nameKey: 'achievements.collector.name',
+        descriptionKey: 'achievements.collector.description',
         icon: '📚',
         rarity: 'epic',
         condition: (results) => results.length >= 50
     },
     {
         id: 'master_collector',
-        name: 'Master Collector',
-        description: 'Experience 100 reincarnations',
+        nameKey: 'achievements.master_collector.name',
+        descriptionKey: 'achievements.master_collector.description',
         icon: '🏆',
         rarity: 'legendary',
         condition: (results) => results.length >= 100
     },
 
-    // 特殊组合成就
+    // 特殊成就
     {
         id: 'golden_life',
-        name: 'Golden Life',
-        description: 'Be born with high health, luck, and long lifespan',
+        nameKey: 'achievements.golden_life.name',
+        descriptionKey: 'achievements.golden_life.description',
         icon: '✨',
         rarity: 'legendary',
         condition: (results) => results.some(r => 
@@ -213,52 +213,54 @@ export const ACHIEVEMENTS: Achievement[] = [
     },
     {
         id: 'renaissance_soul',
-        name: 'Renaissance Soul',
-        description: 'Have multiple talents in different fields',
+        nameKey: 'achievements.renaissance_soul.name',
+        descriptionKey: 'achievements.renaissance_soul.description',
         icon: '🎭',
         rarity: 'epic',
-        condition: (results) => results.some(r => {
-            const hasArt = r.talents.some(t => t.includes('Art') || t.includes('Music') || t.includes('Creative'));
-            const hasScience = r.talents.some(t => t.includes('Math') || t.includes('Scientific') || t.includes('Technical'));
-            const hasSocial = r.talents.some(t => t.includes('Leadership') || t.includes('Social') || t.includes('Charisma'));
-            return hasArt && hasScience && hasSocial;
-        })
+        condition: (results) => results.some(r => 
+            r.talents.some(t => t.includes('Art')) && 
+            r.talents.some(t => t.includes('Math') || t.includes('Science'))
+        )
     },
-
-    // 季节相关成就
-    {
-        id: 'spring_child',
-        name: 'Spring Child',
-        description: 'Be born in spring',
-        icon: '🌸',
-        rarity: 'common',
-        condition: (results) => results.some(r => r.birthSeason === 'spring')
-    },
-    {
-        id: 'winter_warrior',
-        name: 'Winter Warrior',
-        description: 'Be born in winter',
-        icon: '❄️',
-        rarity: 'common',
-        condition: (results) => results.some(r => r.birthSeason === 'winter')
-    },
-
-    // 生肖相关成就
     {
         id: 'dragon_power',
-        name: 'Dragon Power',
-        description: 'Be born in the year of the Dragon',
+        nameKey: 'achievements.dragon_power.name',
+        descriptionKey: 'achievements.dragon_power.description',
         icon: '🐉',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.zodiac === 'Dragon')
+        condition: (results) => results.some(r => 
+            r.country === 'China' && r.health > 80 // 改为基于国家和高健康值的条件
+        )
     },
     {
         id: 'tiger_spirit',
-        name: 'Tiger Spirit',
-        description: 'Be born in the year of the Tiger',
+        nameKey: 'achievements.tiger_spirit.name',
+        descriptionKey: 'achievements.tiger_spirit.description',
         icon: '🐅',
         rarity: 'uncommon',
-        condition: (results) => results.some(r => r.zodiac === 'Tiger')
+        condition: (results) => results.some(r => 
+            r.health > 90 && r.luck > 80 // 改为高健康和运气的条件
+        )
+    },
+    {
+        id: 'spring_child',
+        nameKey: 'achievements.spring_child.name',
+        descriptionKey: 'achievements.spring_child.description',
+        icon: '🌸',
+        rarity: 'common',
+        condition: (results) => results.some(r => 
+            r.talents.length >= 2 // 改为拥有多个天赋的条件
+        )
+    },
+    {
+        id: 'winter_warrior',
+        nameKey: 'achievements.winter_warrior.name',
+        descriptionKey: 'achievements.winter_warrior.description',
+        icon: '❄️',
+        rarity: 'common',
+        condition: (results) => results.some(r => 
+            r.lifespan > 80 // 改为长寿的条件
+        )
     }
 ];
 

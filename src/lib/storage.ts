@@ -1,13 +1,15 @@
-import type { ReincarnationResult, UserStatistics, GameConfig, Achievement } from "@/types";
+import type { ReincarnationResult, UserStatistics, GameConfig, Achievement, KarmaProfile, KarmaRecord } from "@/types";
 
 // IndexedDB 配置
 const DB_NAME = 'ReincarnationGameDB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORES = {
     REINCARNATIONS: 'reincarnations',
     ACHIEVEMENTS: 'achievements',
     STATISTICS: 'statistics',
-    SETTINGS: 'settings'
+    SETTINGS: 'settings',
+    KARMA_PROFILES: 'karma_profiles',
+    KARMA_RECORDS: 'karma_records'
 } as const;
 
 // LocalStorage 键
@@ -63,6 +65,20 @@ class IndexedDBManager {
                 // 设置表
                 if (!db.objectStoreNames.contains(STORES.SETTINGS)) {
                     db.createObjectStore(STORES.SETTINGS, { keyPath: 'key' });
+                }
+
+                // 业力档案表
+                if (!db.objectStoreNames.contains(STORES.KARMA_PROFILES)) {
+                    db.createObjectStore(STORES.KARMA_PROFILES, { keyPath: 'id' });
+                }
+
+                // 业力记录表
+                if (!db.objectStoreNames.contains(STORES.KARMA_RECORDS)) {
+                    const karmaStore = db.createObjectStore(STORES.KARMA_RECORDS, { keyPath: 'id' });
+                    karmaStore.createIndex('lifeId', 'lifeId');
+                    karmaStore.createIndex('timestamp', 'timestamp');
+                    karmaStore.createIndex('category', 'category');
+                    karmaStore.createIndex('actionType', 'actionType');
                 }
             };
         });
@@ -467,4 +483,81 @@ export const saveResults = async (results: ReincarnationResult[]): Promise<void>
 
 export const loadResults = async (): Promise<ReincarnationResult[]> => {
     return await loadReincarnations();
+};
+
+// 业力档案管理
+export const saveKarmaProfile = async (profile: KarmaProfile): Promise<void> => {
+    try {
+        await dbManager.put(STORES.KARMA_PROFILES, { ...profile, id: 'main' });
+    } catch (error) {
+        console.error('Failed to save karma profile:', error);
+    }
+};
+
+export const loadKarmaProfile = async (): Promise<KarmaProfile | null> => {
+    try {
+        const profile = await dbManager.get<KarmaProfile & { id: string }>(STORES.KARMA_PROFILES, 'main');
+        return profile || null;
+    } catch (error) {
+        console.error('Failed to load karma profile:', error);
+        return null;
+    }
+};
+
+export const saveKarmaRecord = async (record: KarmaRecord): Promise<void> => {
+    try {
+        await dbManager.add(STORES.KARMA_RECORDS, record);
+    } catch (error) {
+        console.error('Failed to save karma record:', error);
+    }
+};
+
+export const loadKarmaRecords = async (lifeId?: string): Promise<KarmaRecord[]> => {
+    try {
+        const records = await dbManager.getAll<KarmaRecord>(STORES.KARMA_RECORDS);
+        return lifeId ? records.filter(r => r.lifeId === lifeId) : records;
+    } catch (error) {
+        console.error('Failed to load karma records:', error);
+        return [];
+    }
+};
+
+export const getKarmaStatistics = async (): Promise<{
+    totalPositiveKarma: number;
+    totalNegativeKarma: number;
+    mostCommonAction: string;
+    karmaByCategory: Record<string, number>;
+}> => {
+    try {
+        const records = await loadKarmaRecords();
+        const totalPositiveKarma = records.filter(r => r.value > 0).reduce((sum, r) => sum + r.value, 0);
+        const totalNegativeKarma = records.filter(r => r.value < 0).reduce((sum, r) => sum + r.value, 0);
+        
+        const actionCounts: Record<string, number> = {};
+        const karmaByCategory: Record<string, number> = {};
+        
+        records.forEach(record => {
+            actionCounts[record.actionType] = (actionCounts[record.actionType] || 0) + 1;
+            karmaByCategory[record.category] = (karmaByCategory[record.category] || 0) + record.value;
+        });
+        
+        const mostCommonAction = Object.keys(actionCounts).reduce((a, b) => 
+            actionCounts[a] > actionCounts[b] ? a : b, Object.keys(actionCounts)[0] || 'none'
+        );
+        
+        return {
+            totalPositiveKarma,
+            totalNegativeKarma,
+            mostCommonAction,
+            karmaByCategory
+        };
+    } catch (error) {
+        console.error('Failed to get karma statistics:', error);
+        return {
+            totalPositiveKarma: 0,
+            totalNegativeKarma: 0,
+            mostCommonAction: 'none',
+            karmaByCategory: {}
+        };
+    }
 };

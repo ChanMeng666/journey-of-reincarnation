@@ -1,174 +1,190 @@
 'use client';
 
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
+    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import type { Achievement } from "@/types";
+import { Progress } from "@/components/ui/progress";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Trophy, Star, Crown, Zap, Diamond, Sparkles } from "lucide-react";
 import { ACHIEVEMENTS, getAchievementProgress } from "@/lib/achievements";
-import { getUnlockedAchievements } from "@/lib/storage";
+import type { Achievement } from "@/types";
 
 interface AchievementsDialogProps {
-    isOpen: boolean;
-    onClose: () => void;
+    unlockedAchievements: string[];
+    trigger?: React.ReactNode;
 }
 
-const getRarityColor = (rarity: Achievement['rarity']) => {
-    const colors = {
-        common: 'bg-gray-500',
-        uncommon: 'bg-green-500',
-        rare: 'bg-blue-500',
-        epic: 'bg-purple-500',
-        legendary: 'bg-yellow-500'
-    };
-    return colors[rarity];
-};
-
-export function AchievementsDialog({ isOpen, onClose }: AchievementsDialogProps) {
+export const AchievementsDialog: React.FC<AchievementsDialogProps> = ({
+    unlockedAchievements,
+    trigger
+}) => {
     const { t } = useTranslation();
-    const [unlockedAchievements, setUnlockedAchievements] = useState<Achievement[]>([]);
-    const [progress, setProgress] = useState(0);
-
-    useEffect(() => {
-        const loadAchievements = async () => {
-            try {
-                const unlocked = await getUnlockedAchievements();
-                setUnlockedAchievements(unlocked);
-                setProgress(getAchievementProgress(unlocked.map(a => a.id)));
-            } catch (error) {
-                console.error('Failed to load achievements:', error);
-            }
-        };
-
-        if (isOpen) {
-            loadAchievements();
+    const [selectedRarity, setSelectedRarity] = useState<Achievement['rarity'] | 'all'>('all');
+    
+    const achievementsByRarity = ACHIEVEMENTS.reduce((acc, achievement) => {
+        if (!acc[achievement.rarity]) {
+            acc[achievement.rarity] = [];
         }
-    }, [isOpen]);
-
-    const unlockedIds = unlockedAchievements.map(a => a.id);
-
-    const groupedAchievements = ACHIEVEMENTS.reduce((groups, achievement) => {
-        const { rarity } = achievement;
-        if (!groups[rarity]) {
-            groups[rarity] = [];
-        }
-        groups[rarity].push(achievement);
-        return groups;
+        acc[achievement.rarity].push(achievement);
+        return acc;
     }, {} as Record<Achievement['rarity'], Achievement[]>);
 
-    const rarityOrder: Achievement['rarity'][] = ['legendary', 'epic', 'rare', 'uncommon', 'common'];
+    const getAchievementsByRarity = (rarity: Achievement['rarity']) => {
+        return achievementsByRarity[rarity] || [];
+    };
+
+    const isUnlocked = (achievementId: string) => {
+        return unlockedAchievements.includes(achievementId);
+    };
+
+    const getRarityIcon = (rarity: Achievement['rarity']) => {
+        switch (rarity) {
+            case 'common': return <Star className="w-4 h-4 text-gray-500" />;
+            case 'uncommon': return <Diamond className="w-4 h-4 text-green-500" />;
+            case 'rare': return <Sparkles className="w-4 h-4 text-blue-500" />;
+            case 'epic': return <Zap className="w-4 h-4 text-purple-500" />;
+            case 'legendary': return <Crown className="w-4 h-4 text-yellow-500" />;
+        }
+    };
+
+    const getRarityColor = (rarity: Achievement['rarity']) => {
+        switch (rarity) {
+            case 'common': return 'bg-gray-100 text-gray-800';
+            case 'uncommon': return 'bg-green-100 text-green-800';
+            case 'rare': return 'bg-blue-100 text-blue-800';
+            case 'epic': return 'bg-purple-100 text-purple-800';
+            case 'legendary': return 'bg-yellow-100 text-yellow-800';
+        }
+    };
+
+    const getRarityDisplayName = (rarity: Achievement['rarity']) => {
+        return t(`achievements.rarity.${rarity}`);
+    };
+
+    const filteredAchievements = selectedRarity === 'all' 
+        ? ACHIEVEMENTS 
+        : getAchievementsByRarity(selectedRarity);
+
+    const progressPercentage = getAchievementProgress(unlockedAchievements);
+    const unlockedCount = unlockedAchievements.length;
+    const totalCount = ACHIEVEMENTS.length;
 
     return (
-        <Dialog open={isOpen} onOpenChange={() => onClose()}>
-            <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
+        <Dialog>
+            <DialogTrigger asChild>
+                {trigger || (
+                    <Button variant="outline" className="flex items-center gap-2">
+                        <Trophy className="w-4 h-4" />
+                        {t('achievements.title')}
+                    </Button>
+                )}
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
-                        🏆 {t('achievements.title')}
-                        <Badge variant="secondary">
-                            {unlockedAchievements.length}/{ACHIEVEMENTS.length}
-                        </Badge>
+                        <Trophy className="w-5 h-5" />
+                        {t('achievements.title')}
                     </DialogTitle>
-                    <DialogDescription>
-                        {t('achievements.description')} - {progress.toFixed(1)}% {t('achievements.complete')}
-                    </DialogDescription>
                 </DialogHeader>
-
-                {/* 进度条 */}
-                <div className="mb-6">
-                    <div className="w-full bg-muted rounded-full h-3">
-                        <motion.div
-                            className="h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                            initial={{ width: 0 }}
-                            animate={{ width: `${progress}%` }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                        />
-                    </div>
-                </div>
-
-                {/* 成就列表 */}
+                
                 <div className="space-y-6">
-                    {rarityOrder.map(rarity => (
-                        groupedAchievements[rarity] && (
-                            <motion.div
-                                key={rarity}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="space-y-3"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <span className={`inline-block w-3 h-3 rounded-full ${getRarityColor(rarity)}`} />
-                                    <h3 className="text-lg font-semibold capitalize">
-                                        {t(`rarity.${rarity}`)} ({groupedAchievements[rarity].filter(a => unlockedIds.includes(a.id)).length}/{groupedAchievements[rarity].length})
-                                    </h3>
-                                </div>
-                                
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    {groupedAchievements[rarity].map((achievement, index) => {
-                                        const isUnlocked = unlockedIds.includes(achievement.id);
-                                        const unlockedData = unlockedAchievements.find(a => a.id === achievement.id);
-                                        
-                                        return (
-                                            <motion.div
-                                                key={achievement.id}
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: index * 0.05 }}
-                                                className={`
-                                                    p-4 rounded-lg border transition-all duration-200
-                                                    ${isUnlocked 
-                                                        ? 'bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200 dark:from-yellow-900/20 dark:to-orange-900/20 dark:border-yellow-800' 
-                                                        : 'bg-muted/50 border-muted opacity-60'
-                                                    }
-                                                `}
-                                            >
-                                                <div className="flex items-start gap-3">
-                                                    <span className={`text-2xl ${isUnlocked ? '' : 'grayscale'}`}>
-                                                        {achievement.icon}
-                                                    </span>
-                                                    <div className="flex-1 space-y-1">
-                                                        <div className="flex items-center gap-2">
-                                                            <h4 className={`font-medium ${isUnlocked ? 'text-foreground' : 'text-muted-foreground'}`}>
-                                                                {achievement.name}
-                                                            </h4>
-                                                            {isUnlocked && (
-                                                                <span className="text-xs text-green-600 font-medium">
-                                                                    ✓ {t('achievements.unlocked')}
-                                                                </span>
-                                                            )}
-                                                        </div>
-                                                        <p className={`text-sm ${isUnlocked ? 'text-muted-foreground' : 'text-muted-foreground/70'}`}>
-                                                            {achievement.description}
-                                                        </p>
-                                                        {isUnlocked && unlockedData?.unlockedAt && (
-                                                            <p className="text-xs text-muted-foreground">
-                                                                {t('achievements.unlockedOn')}: {new Date(unlockedData.unlockedAt).toLocaleDateString()}
-                                                            </p>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </motion.div>
-                                        );
-                                    })}
-                                </div>
-                            </motion.div>
-                        )
-                    ))}
-                </div>
+                    {/* Progress Overview */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-lg">
+                                {unlockedCount}/{totalCount}
+                            </CardTitle>
+                            <CardDescription>
+                                {t('achievements.progress')} - {progressPercentage.toFixed(1)}% {t('achievements.completed')}
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <Progress value={progressPercentage} className="w-full" />
+                        </CardContent>
+                    </Card>
 
-                <div className="flex justify-end pt-4">
-                    <Button onClick={onClose}>
-                        {t('close')}
-                    </Button>
+                    {/* Rarity Filter */}
+                    <div className="flex flex-wrap gap-2">
+                        <Button
+                            variant={selectedRarity === 'all' ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setSelectedRarity('all')}
+                        >
+                            {t('achievements.all')}
+                        </Button>
+                        {(['legendary', 'epic', 'rare', 'uncommon', 'common'] as const).map((rarity) => {
+                            const rarityAchievements = getAchievementsByRarity(rarity);
+                            const rarityUnlocked = rarityAchievements.filter(a => isUnlocked(a.id)).length;
+                            
+                            return (
+                                <Button
+                                    key={rarity}
+                                    variant={selectedRarity === rarity ? 'default' : 'outline'}
+                                    size="sm"
+                                    onClick={() => setSelectedRarity(rarity)}
+                                    className="flex items-center gap-2"
+                                >
+                                    {getRarityIcon(rarity)}
+                                    {getRarityDisplayName(rarity)} ({rarityUnlocked}/{rarityAchievements.length})
+                                </Button>
+                            );
+                        })}
+                    </div>
+
+                    {/* Achievements Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {filteredAchievements.map((achievement) => {
+                            const unlocked = isUnlocked(achievement.id);
+                            
+                            return (
+                                <Card 
+                                    key={achievement.id} 
+                                    className={`transition-all duration-200 hover:shadow-lg ${
+                                        unlocked ? 'ring-2 ring-blue-500 bg-blue-50' : 'opacity-75'
+                                    }`}
+                                >
+                                    <CardHeader className="pb-3">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-2xl">{achievement.icon}</span>
+                                                <Badge className={getRarityColor(achievement.rarity)}>
+                                                    {getRarityDisplayName(achievement.rarity)}
+                                                </Badge>
+                                            </div>
+                                            {unlocked && (
+                                                <Trophy className="w-5 h-5 text-yellow-500" />
+                                            )}
+                                        </div>
+                                        <CardTitle className="text-base">
+                                            {t(achievement.nameKey, { defaultValue: achievement.nameKey })}
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <CardDescription>
+                                            {t(achievement.descriptionKey, { defaultValue: achievement.descriptionKey })}
+                                        </CardDescription>
+                                    </CardContent>
+                                </Card>
+                            );
+                        })}
+                    </div>
+
+                    {filteredAchievements.length === 0 && (
+                        <div className="text-center py-8">
+                            <Trophy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                            <p className="text-gray-500">{t('achievements.noAchievements')}</p>
+                        </div>
+                    )}
                 </div>
             </DialogContent>
         </Dialog>
     );
-} 
+}; 

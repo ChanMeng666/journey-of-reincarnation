@@ -9,7 +9,8 @@ import { ComparisonTable } from "@/components/ui/comparison-table";
 import { ShareDialog } from "@/components/ui/share-dialog";
 import { SpecialEventDialog } from "@/components/ui/special-event-dialog";
 import { useEffect, useState } from 'react';
-import type { ReincarnationResult, SpecialEventType, GameMode, ModeSpecificResult } from "@/types";
+import { useTranslation } from 'react-i18next';
+import type { ReincarnationResult, SpecialEventType, GameMode, ModeSpecificResult, KarmaProfile } from "@/types";
 import { generateReincarnation } from "@/lib/reincarnation";
 import { motion, AnimatePresence } from "framer-motion";
 import '../i18n/config';
@@ -21,15 +22,23 @@ import {
     loadReincarnations, 
     initializeStorage,
     getUnlockedAchievementIds,
-    saveAchievement 
+    saveAchievement,
+    loadKarmaProfile,
+    saveKarmaProfile,
+    saveKarmaRecord
 } from "@/lib/storage";
+import { createInitialKarmaProfile } from "@/lib/karma-system";
 import { checkNewAchievements } from "@/lib/achievements";
 import { GameModeSelector } from "@/components/ui/game-mode-selector";
 import { EnhancedResultCard } from "@/components/ui/enhanced-result-card";
 import { DataVisualization } from "@/components/ui/data-visualization";
 import { Leaderboard } from "@/components/ui/leaderboard";
+import { KarmaDisplay } from "@/components/ui/karma-display";
+import { ModernParticleBackground } from "@/components/ui/modern-particle-background";
+import { AnimatedContainer, GradientText, Card3D, GlowButton } from "@/components/ui/enhanced-animations";
 
 export default function Home() {
+    const { t } = useTranslation();
     const [results, setResults] = useState<ReincarnationResult[]>([]);
     const [isGenerating, setIsGenerating] = useState(false);
     const [specialEvent, setSpecialEvent] = useState<SpecialEventType | null>(null);
@@ -38,6 +47,9 @@ export default function Home() {
     // 游戏模式状态
     const [selectedMode, setSelectedMode] = useState<GameMode>('classic');
     const [modeSpecificResult, setModeSpecificResult] = useState<ModeSpecificResult | undefined>();
+    
+    // 业力系统状态
+    const [karmaProfile, setKarmaProfile] = useState<KarmaProfile | null>(null);
     
     // UI状态
     const [showDataVisualization, setShowDataVisualization] = useState(false);
@@ -52,6 +64,14 @@ export default function Home() {
                 await initializeStorage();
                 const savedResults = await loadReincarnations();
                 setResults(savedResults);
+                
+                // 加载业力档案
+                let profile = await loadKarmaProfile();
+                if (!profile) {
+                    profile = createInitialKarmaProfile();
+                    await saveKarmaProfile(profile);
+                }
+                setKarmaProfile(profile);
             } catch (error) {
                 console.error('Failed to initialize data:', error);
             }
@@ -66,11 +86,24 @@ export default function Home() {
 
         setTimeout(async () => {
             try {
-                const { result: newResult, modeResult } = generateReincarnation(selectedMode);
+                const { result: newResult, modeResult, updatedKarmaProfile } = generateReincarnation(selectedMode, karmaProfile || undefined);
                 setModeSpecificResult(modeResult);
                 
                 // 保存到数据库
                 await saveReincarnation(newResult);
+                
+                // 保存业力事件
+                if (newResult.karmaEvents) {
+                    for (const event of newResult.karmaEvents) {
+                        await saveKarmaRecord(event);
+                    }
+                }
+                
+                // 更新业力档案
+                if (updatedKarmaProfile) {
+                    await saveKarmaProfile(updatedKarmaProfile);
+                    setKarmaProfile(updatedKarmaProfile);
+                }
                 
                 // 更新本地状态
                 setResults(prev => [...prev, newResult]);
@@ -88,7 +121,7 @@ export default function Home() {
                 }
 
                 if (newUnlockedAchievements.length > 0) {
-                    setNewAchievements(newUnlockedAchievements.map(a => a.name));
+                    setNewAchievements(newUnlockedAchievements.map(a => t(a.nameKey)));
                     setTimeout(() => setNewAchievements([]), 5000); // 5秒后清除通知
                 }
 
@@ -113,13 +146,16 @@ export default function Home() {
 
     return (
         <MainLayout>
-            <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto">
+            <ModernParticleBackground theme="cosmic" particleCount={30} />
+            <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto relative z-10">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl font-bold text-center text-white mt-8"
+                    className="text-4xl font-bold text-center mt-8"
                 >
-                    <TitleWithLogo />
+                    <GradientText gradient="from-purple-400 via-pink-500 to-blue-500">
+                        <TitleWithLogo />
+                    </GradientText>
                 </motion.h1>
 
                 <div className="flex flex-col items-center gap-4">
@@ -140,19 +176,19 @@ export default function Home() {
                     />
                     
                     {results.length > 0 && (
-                        <div className="flex gap-2">
-                            <button 
+                        <div className="flex gap-4">
+                            <GlowButton
+                                variant="primary"
                                 onClick={() => setShowDataVisualization(true)}
-                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                             >
-                                📊 Data Analytics
-                            </button>
-                            <button 
+                                📊 {t('dataVisualization.title')}
+                            </GlowButton>
+                            <GlowButton
+                                variant="secondary"
                                 onClick={() => setShowLeaderboard(true)}
-                                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
                             >
-                                🏆 Leaderboard
-                            </button>
+                                🏆 {t('leaderboard.title')}
+                            </GlowButton>
                         </div>
                     )}
                 </div>
@@ -169,14 +205,13 @@ export default function Home() {
                             <GeneratingAnimation />
                         </motion.div>
                     ) : currentResult ? (
-                        <motion.div
+                        <AnimatedContainer
                             key="results"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            variant="fadeInScale"
                             className="w-full space-y-8"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-6">
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <Card3D className="space-y-6">
                                     <CharacterAvatar
                                         gender={currentResult.gender}
                                         socialClass={currentResult.socialClass}
@@ -185,12 +220,20 @@ export default function Home() {
                                     <div className="flex justify-center">
                                         <ShareDialog result={currentResult} />
                                     </div>
-                                </div>
-                                <EnhancedResultCard 
-                                    result={currentResult} 
-                                    modeResult={modeSpecificResult}
-                                    mode={selectedMode}
-                                />
+                                </Card3D>
+                                <Card3D>
+                                    <EnhancedResultCard 
+                                        result={currentResult} 
+                                        modeResult={modeSpecificResult}
+                                        mode={selectedMode}
+                                    />
+                                </Card3D>
+                                <Card3D>
+                                    <KarmaDisplay 
+                                        karmaProfile={karmaProfile}
+                                        karmaEvents={currentResult.karmaEvents}
+                                    />
+                                </Card3D>
                             </div>
 
                             <WorldMap country={currentResult.country} />
@@ -200,7 +243,7 @@ export default function Home() {
                             {results.length > 1 && (
                                 <ComparisonTable results={results} />
                             )}
-                        </motion.div>
+                        </AnimatedContainer>
                     ) : null}
                 </AnimatePresence>
             </div>
@@ -233,7 +276,7 @@ export default function Home() {
                                 <div className="flex items-center gap-2">
                                     <span className="text-lg">🏆</span>
                                     <div>
-                                        <div className="font-bold text-sm">Achievement Unlocked!</div>
+                                        <div className="font-bold text-sm">{t('achievements.achievementUnlocked')}</div>
                                         <div className="text-xs">{achievement}</div>
                                     </div>
                                 </div>
@@ -254,7 +297,7 @@ export default function Home() {
                 isOpen={showLeaderboard}
                 onClose={() => setShowLeaderboard(false)}
                 currentPlayerData={{
-                    playerName: 'Player',
+                    playerName: t('player'),
                     reincarnations: results.length,
                     achievements: 0,
                     totalLifespan: results.reduce((sum, r) => sum + r.lifespan, 0),

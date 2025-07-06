@@ -1,5 +1,11 @@
-import type { ReincarnationResult, GameMode, ModeSpecificResult } from "@/types";
+import type { ReincarnationResult, GameMode, ModeSpecificResult, KarmaProfile } from "@/types";
 import { generateModeSpecificResult, getModeLifespanModifier } from "./game-modes";
+import { 
+    calculateKarmaInfluence, 
+    generateKarmaEvents, 
+    updateKarmaProfile, 
+    createInitialKarmaProfile 
+} from "./karma-system";
 
 // 国家数据配置（基于真实人口数据的加权）
 const COUNTRIES_CONFIG = {
@@ -120,22 +126,35 @@ const generateLifespan = (country: string, socialClass: string, health: number):
     return Math.max(30, Math.round(baseLifespan + randomVariation));
 };
 
-export const generateReincarnation = (mode: GameMode = 'classic'): { 
+export const generateReincarnation = (
+    mode: GameMode = 'classic',
+    karmaProfile?: KarmaProfile
+): { 
     result: ReincarnationResult, 
-    modeResult?: ModeSpecificResult 
+    modeResult?: ModeSpecificResult,
+    updatedKarmaProfile?: KarmaProfile 
 } => {
     const id = `reincarnation_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     const timestamp = Date.now();
+    
+    // 如果没有提供业力档案，创建初始档案
+    const currentKarmaProfile = karmaProfile || createInitialKarmaProfile();
+    
+    // 计算业力影响
+    const karmaInfluence = calculateKarmaInfluence(currentKarmaProfile);
     
     // 基础属性生成
     const country = getWeightedRandomCountry();
     const gender = Math.random() < 0.504 ? 'male' : 'female';
     
-    // 社会阶层权重（现实世界分布）
+    // 社会阶层权重（现实世界分布 + 业力影响）
     const socialClassRand = Math.random();
     let socialClass: 'low' | 'middle' | 'high';
-    if (socialClassRand < 0.6) socialClass = 'low';
-    else if (socialClassRand < 0.9) socialClass = 'middle';
+    const socialClassThreshold = 0.6 + (karmaInfluence.socialClassBonus * 0.1);
+    const highClassThreshold = 0.9 + (karmaInfluence.socialClassBonus * 0.05);
+    
+    if (socialClassRand < socialClassThreshold) socialClass = 'low';
+    else if (socialClassRand < highClassThreshold) socialClass = 'middle';
     else socialClass = 'high';
     
     const birthplace = getRandomItem(['urban', 'suburban', 'rural'] as const);
@@ -149,12 +168,16 @@ export const generateReincarnation = (mode: GameMode = 'classic'): {
     else if (eraRand < 0.01) era = 'future';
     else era = 'modern';
     
-    // 属性生成
-    const health = Math.round(Math.random() * 50 + 40 + (socialClass === 'high' ? 10 : socialClass === 'middle' ? 5 : 0));
-    const luck = Math.round(Math.random() * 100);
+    // 属性生成（加入业力影响）
+    const baseHealth = Math.round(Math.random() * 50 + 40 + (socialClass === 'high' ? 10 : socialClass === 'middle' ? 5 : 0));
+    const health = Math.max(10, Math.min(100, baseHealth + karmaInfluence.healthBonus));
     
-    // 天赋生成（稀有度影响数量）
-    const talentCount = Math.random() < 0.1 ? 4 : Math.random() < 0.3 ? 3 : Math.random() < 0.6 ? 2 : 1;
+    const baseLuck = Math.round(Math.random() * 100);
+    const luck = Math.max(0, Math.min(100, baseLuck + karmaInfluence.luckBonus));
+    
+    // 天赋生成（稀有度影响数量 + 业力加成）
+    const baseTalentCount = Math.random() < 0.1 ? 4 : Math.random() < 0.3 ? 3 : Math.random() < 0.6 ? 2 : 1;
+    const talentCount = Math.min(6, baseTalentCount + karmaInfluence.talentBonus);
     const talents = getRandomItems(TALENTS, talentCount);
     
     // 性格特征
@@ -172,8 +195,9 @@ export const generateReincarnation = (mode: GameMode = 'classic'): {
     const birthSeason = getRandomItem(['spring', 'summer', 'autumn', 'winter'] as const);
     const zodiac = getRandomItem(ZODIAC_SIGNS);
     
-    // 寿命计算
-    const lifespan = generateLifespan(country, socialClass, health);
+    // 寿命计算（加入业力影响）
+    const baseLifespan = generateLifespan(country, socialClass, health);
+    const lifespan = Math.max(20, Math.round(baseLifespan + karmaInfluence.lifespanBonus));
     
     // 构建结果对象
     const result: Omit<ReincarnationResult, 'rarity'> = {
@@ -194,6 +218,7 @@ export const generateReincarnation = (mode: GameMode = 'classic'): {
         personality,
         birthSeason,
         zodiac,
+        karmaInfluence,
     };
     
     // 计算稀有度
@@ -216,8 +241,16 @@ export const generateReincarnation = (mode: GameMode = 'classic'): {
         }
     }
     
+    // 生成业力事件
+    const karmaEvents = generateKarmaEvents(finalResult, currentKarmaProfile);
+    finalResult.karmaEvents = karmaEvents;
+    
+    // 更新业力档案
+    const updatedKarmaProfile = updateKarmaProfile(currentKarmaProfile, karmaEvents);
+    
     return {
         result: finalResult,
-        modeResult
+        modeResult,
+        updatedKarmaProfile
     };
 };

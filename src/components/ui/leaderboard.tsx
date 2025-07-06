@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +23,7 @@ interface LeaderboardProps {
 }
 
 export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardProps) {
+    const { t } = useTranslation();
     const [leaderboardData, setLeaderboardData] = useState<PlayerData[]>([]);
     const [category, setCategory] = useState<'reincarnations' | 'achievements' | 'lifespan' | 'rareLifes'>('reincarnations');
 
@@ -70,6 +72,16 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
             default: return <Trophy className="w-4 h-4" />;
         }
     };
+    
+    const getCategoryLabel = (cat: string) => {
+        switch (cat) {
+            case 'reincarnations': return t('leaderboard.reincarnations');
+            case 'achievements': return t('leaderboard.achievements');
+            case 'lifespan': return t('leaderboard.lifespan');
+            case 'rareLifes': return t('leaderboard.rareLifes');
+            default: return cat;
+        }
+    };
 
     const getRankIcon = (rank: number) => {
         switch (rank) {
@@ -84,7 +96,7 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
         switch (cat) {
             case 'reincarnations': return player.reincarnations.toLocaleString();
             case 'achievements': return player.achievements.toLocaleString();
-            case 'lifespan': return `${player.totalLifespan.toLocaleString()} years`;
+            case 'lifespan': return `${player.totalLifespan.toLocaleString()} ${t('leaderboard.years')}`;
             case 'rareLifes': return player.rareLifeCount.toLocaleString();
             default: return '0';
         }
@@ -98,7 +110,7 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <Trophy className="w-5 h-5" />
-                        Community Leaderboard
+                        {t('leaderboard.title')}
                     </DialogTitle>
                     <Button
                         onClick={onClose}
@@ -122,7 +134,7 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
                                 size="sm"
                             >
                                 {getCategoryIcon(cat)}
-                                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                                {getCategoryLabel(cat)}
                             </Button>
                         ))}
                     </div>
@@ -148,11 +160,11 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
                                             <div className={`font-semibold ${isCurrentPlayer ? 'text-blue-700' : ''}`}>
                                                 {player.playerName}
                                                 {isCurrentPlayer && (
-                                                    <Badge variant="secondary" className="ml-2">You</Badge>
+                                                    <Badge variant="secondary" className="ml-2">{t('leaderboard.you')}</Badge>
                                                 )}
                                             </div>
                                             <div className="text-sm text-muted-foreground">
-                                                {player.favoriteCountry} • {player.achievements} achievements
+                                                {player.favoriteCountry} • {player.achievements} {t('leaderboard.achievementsLower')}
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +174,7 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
                                             {getScoreDisplay(player, category)}
                                         </div>
                                         <div className="text-sm text-muted-foreground">
-                                            {player.rareLifeCount} rare lives
+                                            {player.rareLifeCount} {t('leaderboard.rareLifesLower')}
                                         </div>
                                     </div>
                                 </div>
@@ -172,23 +184,23 @@ export function Leaderboard({ isOpen, onClose, currentPlayerData }: LeaderboardP
 
                     {/* Statistics */}
                     <div className="pt-4 border-t">
-                        <h3 className="font-semibold mb-2">Your Stats</h3>
+                        <h3 className="font-semibold mb-2">{t('leaderboard.yourRank')}</h3>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                             <div className="text-center p-2 bg-muted rounded">
                                 <div className="font-semibold">{currentPlayerData.reincarnations}</div>
-                                <div className="text-muted-foreground">Lives</div>
+                                <div className="text-muted-foreground">{t('leaderboard.reincarnations')}</div>
                             </div>
                             <div className="text-center p-2 bg-muted rounded">
                                 <div className="font-semibold">{currentPlayerData.achievements}</div>
-                                <div className="text-muted-foreground">Achievements</div>
+                                <div className="text-muted-foreground">{t('leaderboard.achievements')}</div>
                             </div>
                             <div className="text-center p-2 bg-muted rounded">
                                 <div className="font-semibold">{currentPlayerData.totalLifespan.toLocaleString()}</div>
-                                <div className="text-muted-foreground">Total Years</div>
+                                <div className="text-muted-foreground">{t('leaderboard.lifespan')}</div>
                             </div>
                             <div className="text-center p-2 bg-muted rounded">
                                 <div className="font-semibold">{currentPlayerData.rareLifeCount}</div>
-                                <div className="text-muted-foreground">Rare Lives</div>
+                                <div className="text-muted-foreground">{t('leaderboard.rareLifes')}</div>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,50 @@
+// 业力系统相关类型
+export interface KarmaRecord {
+    id: string;
+    lifeId: string;
+    timestamp: number;
+    actionType: KarmaActionType;
+    value: number; // -100 to 100
+    description: string; // Translation key for the event description
+    category: KarmaCategory;
+    country: string; // Country where the event occurred
+}
+
+export type KarmaActionType = 
+    | 'moral_choice' 
+    | 'helping_others' 
+    | 'causing_harm' 
+    | 'charity' 
+    | 'greed' 
+    | 'wisdom_sharing' 
+    | 'environmental_action' 
+    | 'leadership' 
+    | 'betrayal' 
+    | 'sacrifice' 
+    | 'innovation' 
+    | 'destruction';
+
+export type KarmaCategory = 'moral' | 'social' | 'environmental' | 'intellectual' | 'spiritual';
+
+export interface KarmaProfile {
+    totalKarma: number;
+    moralKarma: number;
+    socialKarma: number;
+    environmentalKarma: number;
+    intellectualKarma: number;
+    spiritualKarma: number;
+    lifeCount: number;
+    lastUpdated: number;
+}
+
+export interface SoulLevel {
+    level: number;
+    experience: number;
+    experienceToNext: number;
+    unlockedAbilities: string[];
+    titleKey: string;
+}
+
 export interface ReincarnationResult {
     country: string;
     gender: 'male' | 'female';
@@ -17,18 +64,27 @@ export interface ReincarnationResult {
     rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
     id: string;
     timestamp: number;
+    karmaInfluence?: {
+        healthBonus: number;
+        luckBonus: number;
+        talentBonus: number;
+        socialClassBonus: number;
+        lifespanBonus: number;
+        specialAbilities: string[];
+    };
+    karmaEvents?: KarmaRecord[];
 }
 
 export type SpecialEventType = 'twinBirth' | 'prodigy' | 'historicalFigure' | 'timeTraveler' | 'prophetic' | 'miraculous';
 
 export interface Achievement {
     id: string;
-    name: string;
-    description: string;
+    nameKey: string;
+    descriptionKey: string;
     icon: string;
+    rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
     condition: (results: ReincarnationResult[]) => boolean;
     unlockedAt?: number;
-    rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
 }
 
 export interface UserStatistics {

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,6 +26,7 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
     onModeSelect,
     playerStats
 }) => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [unlockedModes, setUnlockedModes] = useState<Set<GameMode>>(new Set(['classic']));
 
@@ -87,7 +89,7 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
                 <Button variant="outline" className="flex items-center gap-2">
                     <Gamepad2 className="w-4 h-4" />
                     <span className="text-lg mr-2">{selectedModeConfig?.icon}</span>
-                    <span>{selectedModeConfig?.name}</span>
+                    <span>{selectedModeConfig ? t(`gameModes.${selectedModeConfig.id}`) : t('selectGameMode')}</span>
                 </Button>
             </DialogTrigger>
             
@@ -95,7 +97,7 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <Gamepad2 className="w-5 h-5" />
-                        Select Game Mode
+                        {t('gameModes.selector.title')}
                     </DialogTitle>
                 </DialogHeader>
 
@@ -128,14 +130,14 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
                                             <span className="text-3xl">{mode.icon}</span>
                                             <div>
                                                 <CardTitle className="flex items-center gap-2">
-                                                    {mode.name}
+                                                    {t(`gameModes.${mode.id}`)}
                                                     {isSelected && (
                                                         <Badge variant="default" className="text-xs">
-                                                            Current
+                                                            {t('gameModes.selector.current')}
                                                         </Badge>
                                                     )}
                                                 </CardTitle>
-                                                <CardDescription>{mode.description}</CardDescription>
+                                                <CardDescription>{t(`gameModes.selector.${mode.id}Desc`)}</CardDescription>
                                             </div>
                                         </div>
                                         
@@ -150,13 +152,13 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
                                         <div className="flex items-center gap-2">
                                             <Star className="w-4 h-4 text-green-600" />
                                             <span className="text-sm font-medium text-green-600">
-                                                Unlocked
+                                                {t('gameModes.selector.unlocked')}
                                             </span>
                                         </div>
                                     ) : (
                                         <div className="space-y-2">
                                             <div className="text-sm text-muted-foreground">
-                                                Requires: {mode.unlockRequirement?.reincarnations} reincarnations
+                                                {t('gameModes.selector.requires')}: {mode.unlockRequirement?.reincarnations} {t('gameModes.selector.reincarnations')}
                                             </div>
                                             <Progress value={progress} />
                                         </div>
@@ -169,26 +171,26 @@ export const GameModeSelector: React.FC<GameModeSelectorProps> = ({
 
                 {/* 模式说明 */}
                 <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-                    <h3 className="font-semibold mb-2">🎮 Game Modes Overview</h3>
+                    <h3 className="font-semibold mb-2">🎮 {t('gameModes.selector.overview')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                         <div>
-                            <strong>🌍 Classic Mode:</strong> Traditional modern world reincarnation
+                            <strong>🌍 {t('gameModes.classic')}:</strong> {t('gameModes.selector.classicDesc')}
                         </div>
                         <div>
-                            <strong>🏛️ Historical Mode:</strong> Live through different historical eras
+                            <strong>🏛️ {t('gameModes.historical')}:</strong> {t('gameModes.selector.historicalDesc')}
                         </div>
                         <div>
-                            <strong>🧙‍♂️ Fantasy Mode:</strong> Magical beings in fantasy realms
+                            <strong>🧙‍♂️ {t('gameModes.fantasy')}:</strong> {t('gameModes.selector.fantasyDesc')}
                         </div>
                         <div>
-                            <strong>🚀 Sci-Fi Mode:</strong> Futuristic civilizations and technology
+                            <strong>🚀 {t('gameModes.scifi')}:</strong> {t('gameModes.selector.scifiDesc')}
                         </div>
                     </div>
                 </div>
 
                 <div className="flex justify-end">
                     <Button onClick={() => setIsOpen(false)} variant="outline">
-                        Close
+                        {t('close')}
                     </Button>
                 </div>
             </DialogContent>

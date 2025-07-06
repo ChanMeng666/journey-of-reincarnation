@@ -61,7 +61,7 @@ export function ComparisonTable({ results }: ComparisonTableProps) {
                                 <th className="px-4 py-2">#</th>
                                 <th className="px-4 py-2">{t('country')}</th>
                                 <th className="px-4 py-2">{t('era')}</th>
-                                <th className="px-4 py-2">稀有度</th>
+                                <th className="px-4 py-2">{t('rarityLabel')}</th>
                                 <th className="px-4 py-2">{t('health')}</th>
                                 <th className="px-4 py-2">{t('difficultyLevel')}</th>
                             </tr>

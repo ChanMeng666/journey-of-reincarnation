@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +28,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
     isOpen,
     onClose
 }) => {
+    const { t } = useTranslation();
     const [chartData, setChartData] = useState<ChartData | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -97,10 +99,10 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                     <div className="flex items-center justify-between p-4 border-b">
                         <div className="flex items-center gap-2">
                             <BarChart3 className="w-5 h-5" />
-                            <h2 className="text-lg font-semibold">Data Visualization</h2>
+                            <h2 className="text-lg font-semibold">{t('dataVisualization.title')}</h2>
                         </div>
                         <Button variant="outline" onClick={onClose}>
-                            Close
+                            {t('dataVisualization.close')}
                         </Button>
                     </div>
 
@@ -109,7 +111,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                             <div className="flex items-center justify-center h-64">
                                 <div className="text-center">
                                     <Activity className="w-8 h-8 mx-auto mb-2 animate-spin" />
-                                    <p>Loading data...</p>
+                                    <p>{t('dataVisualization.loading')}</p>
                                 </div>
                             </div>
                         ) : chartData ? (
@@ -120,7 +122,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                         <CardHeader className="pb-2">
                                             <CardTitle className="text-sm flex items-center gap-1">
                                                 <Target className="w-4 h-4" />
-                                                Total Lives
+                                                {t('dataVisualization.totalLives')}
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent>
@@ -134,13 +136,13 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                         <CardHeader className="pb-2">
                                             <CardTitle className="text-sm flex items-center gap-1">
                                                 <Calendar className="w-4 h-4" />
-                                                Avg Lifespan
+                                                {t('dataVisualization.avgLifespan')}
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent>
                                             <div className="text-2xl font-bold">
                                                 {chartData.avgLifespan}
-                                                <span className="text-sm font-normal text-muted-foreground ml-1">years</span>
+                                                <span className="text-sm font-normal text-muted-foreground ml-1">{t('dataVisualization.years')}</span>
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -149,7 +151,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                         <CardHeader className="pb-2">
                                             <CardTitle className="text-sm flex items-center gap-1">
                                                 <Heart className="w-4 h-4" />
-                                                Avg Health
+                                                {t('dataVisualization.avgHealth')}
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent>
@@ -164,7 +166,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                         <CardHeader className="pb-2">
                                             <CardTitle className="text-sm flex items-center gap-1">
                                                 <Sparkles className="w-4 h-4" />
-                                                Avg Luck
+                                                {t('dataVisualization.avgLuck')}
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent>
@@ -181,7 +183,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2">
                                             <Crown className="w-5 h-5" />
-                                            Rarity Distribution
+                                            {t('dataVisualization.rarityDistribution')}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
@@ -198,7 +200,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                                                 <Badge className={getRarityColor(rarity)}>
                                                                     {rarity.toUpperCase()}
                                                                 </Badge>
-                                                                <span className="text-sm">{count} lives</span>
+                                                                <span className="text-sm">{count} {t('dataVisualization.lives')}</span>
                                                             </div>
                                                             <div className="flex items-center gap-2">
                                                                 <Progress value={percentage} className="w-20 h-2" />
@@ -214,7 +216,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                                 {/* 国家分布 */}
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle>Top Countries</CardTitle>
+                                        <CardTitle>{t('dataVisualization.topCountries')}</CardTitle>
                                     </CardHeader>
                                     <CardContent>
                                         <div className="space-y-2">
@@ -241,7 +243,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                             </div>
                         ) : (
                             <div className="text-center text-muted-foreground py-8">
-                                No data available for visualization
+                                {t('dataVisualization.noData')}
                             </div>
                         )}
                     </div>

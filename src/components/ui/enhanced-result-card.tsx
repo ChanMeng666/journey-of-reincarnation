@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -18,6 +19,8 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
     modeResult,
     mode
 }) => {
+    const { t } = useTranslation();
+    
     const getRarityIcon = (rarity: string) => {
         const icons = {
             common: Star,
@@ -49,10 +52,10 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <CardTitle className="flex items-center gap-2">
-                            Your New Life
+                            {t('newLife')}
                             <Badge className={`${getRarityColor(result.rarity)} font-bold border`}>
                                 <RarityIcon className="w-3 h-3 mr-1" />
-                                {result.rarity.toUpperCase()}
+                                {t(`rarity.${result.rarity}`).toUpperCase()}
                             </Badge>
                         </CardTitle>
                     </div>
@@ -61,20 +64,20 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
                     {/* 基本信息网格 */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div>
-                            <span className="text-sm font-medium text-muted-foreground">Country</span>
+                            <span className="text-sm font-medium text-muted-foreground">{t('country')}</span>
                             <p className="font-semibold">{result.country}</p>
                         </div>
                         <div>
-                            <span className="text-sm font-medium text-muted-foreground">Gender</span>
-                            <p className="font-semibold">{result.gender}</p>
+                            <span className="text-sm font-medium text-muted-foreground">{t('gender')}</span>
+                            <p className="font-semibold">{t(result.gender)}</p>
                         </div>
                         <div>
-                            <span className="text-sm font-medium text-muted-foreground">Social Class</span>
-                            <p className="font-semibold">{result.socialClass}</p>
+                            <span className="text-sm font-medium text-muted-foreground">{t('socialClass')}</span>
+                            <p className="font-semibold">{t(result.socialClass)}</p>
                         </div>
                         <div>
-                            <span className="text-sm font-medium text-muted-foreground">Birthplace</span>
-                            <p className="font-semibold">{result.birthplace}</p>
+                            <span className="text-sm font-medium text-muted-foreground">{t('birthplace')}</span>
+                            <p className="font-semibold">{t(result.birthplace)}</p>
                         </div>
                     </div>
 
@@ -84,7 +87,7 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
                             <div className="flex items-center justify-between mb-1">
                                 <span className="text-sm font-medium flex items-center gap-1">
                                     <Heart className="w-4 h-4 text-red-500" />
-                                    Health
+                                    {t('health')}
                                 </span>
                                 <span className="text-sm">{result.health}/100</span>
                             </div>
@@ -94,7 +97,7 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
                             <div className="flex items-center justify-between mb-1">
                                 <span className="text-sm font-medium flex items-center gap-1">
                                     <Sparkles className="w-4 h-4 text-yellow-500" />
-                                    Luck
+                                    {t('luck')}
                                 </span>
                                 <span className="text-sm">{result.luck}/100</span>
                             </div>
@@ -105,7 +108,7 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
                     {/* 天赋 */}
                     {result.talents && result.talents.length > 0 && (
                         <div>
-                            <h3 className="font-medium text-sm mb-2">Talents</h3>
+                            <h3 className="font-medium text-sm mb-2">{t('talents')}</h3>
                             <div className="flex flex-wrap gap-1">
                                 {result.talents.map((talent, index) => (
                                     <Badge key={index} variant="secondary" className="text-xs">
@@ -119,19 +122,19 @@ export const EnhancedResultCard: React.FC<EnhancedResultCardProps> = ({
                     {/* 寿命 */}
                     <div className="text-center p-3 bg-muted/30 rounded-lg">
                         <span className="text-lg font-bold">{result.lifespan}</span>
-                        <span className="text-sm text-muted-foreground ml-1">years lifespan</span>
+                        <span className="text-sm text-muted-foreground ml-1">{t('yearsLifespan')}</span>
                     </div>
 
                     {/* 模式特定内容简化显示 */}
                     {mode !== 'classic' && modeResult && (
                         <div className="mt-4 p-3 bg-primary/5 rounded-lg">
                             <div className="text-sm font-medium text-primary">
-                                {mode === 'historical' && '🏛️ Historical Mode Active'}
-                                {mode === 'fantasy' && '🧙‍♂️ Fantasy Mode Active'}
-                                {mode === 'scifi' && '🚀 Sci-Fi Mode Active'}
+                                {mode === 'historical' && `🏛️ ${t('modeActive.historical')}`}
+                                {mode === 'fantasy' && `🧙‍♂️ ${t('modeActive.fantasy')}`}
+                                {mode === 'scifi' && `🚀 ${t('modeActive.scifi')}`}
                             </div>
                             <div className="text-xs text-muted-foreground mt-1">
-                                Enhanced life experience with special features
+                                {t('enhancedExperience')}
                             </div>
                         </div>
                     )}
