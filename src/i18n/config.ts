@@ -435,6 +435,33 @@ const resources = {
             reincarnateButton: 'Reincarnate',
             generateNewLife: 'Generate New Life',
 
+            // Developer Info
+            developer: {
+                title: 'Meet the Creator',
+                subtitle: 'Crafted with passion by Chan Meng',
+                description: 'Hi! I\'m Chan Meng, a passionate web developer who loves creating immersive digital experiences. This reincarnation simulator combines spiritual concepts with modern technology to explore the infinite possibilities of existence.',
+                contact: 'Get in Touch',
+                email: 'Email Me',
+                github: 'View Portfolio',
+                project: 'Star on GitHub',
+                customDevelopment: 'Custom Development Services',
+                services: {
+                    title: 'Professional Web Development',
+                    subtitle: 'Let\'s bring your ideas to life',
+                    description: 'I specialize in creating custom web applications, interactive experiences, and spiritual/philosophical tools. From concept to deployment, I deliver high-quality solutions tailored to your unique vision.',
+                    features: [
+                        'Custom Web Applications',
+                        'Interactive Experiences',
+                        'Modern UI/UX Design',
+                        'Full-Stack Development',
+                        'Mobile-Responsive Design',
+                        'Performance Optimization'
+                    ],
+                    cta: 'Ready to start your project? Let\'s discuss your vision!'
+                },
+                attribution: 'Designed & Developed by'
+            },
+
             // Achievements
             achievements: {
                 title: 'Achievements',
@@ -981,6 +1008,33 @@ const resources = {
             clickToViewAchievements: '点击查看成就',
             reincarnateButton: '重新投胎',
             generateNewLife: '生成新人生',
+
+            // Developer Info
+            developer: {
+                title: '遇见创作者',
+                subtitle: '由 Chan Meng 倾心打造',
+                description: '你好！我是 Chan Meng，一位充满热情的web开发者，热爱创造沉浸式数字体验。这个轮回模拟器将精神理念与现代技术相结合，探索存在的无限可能性。',
+                contact: '联系我',
+                email: '发送邮件',
+                github: '查看作品集',
+                project: '在GitHub上点星',
+                customDevelopment: '定制开发服务',
+                services: {
+                    title: '专业网站开发',
+                    subtitle: '让我们一起实现您的想法',
+                    description: '我专注于创建定制网络应用、交互体验以及精神/哲学工具。从概念到部署，我提供量身定制的高质量解决方案，实现您独特的愿景。',
+                    features: [
+                        '定制网络应用',
+                        '交互式体验',
+                        '现代UI/UX设计',
+                        '全栈开发',
+                        '移动端响应式设计',
+                        '性能优化'
+                    ],
+                    cta: '准备开始您的项目了吗？让我们讨论您的愿景！'
+                },
+                attribution: '设计与开发'
+            },
 
             // Game Modes
             gameModes: {

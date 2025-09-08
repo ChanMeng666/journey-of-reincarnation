@@ -22,7 +22,7 @@ export function TitleWithLogo() {
                 <span className="text-yellow-500 animate-pulse">💛</span>
                 <span>by</span>
                 <a
-                    href="https://github.com/ChanMeng666/journey-of-reincarnation2"
+                    href="https://github.com/ChanMeng666/journey-of-reincarnation"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-white/80 hover:underline transition-colors"
