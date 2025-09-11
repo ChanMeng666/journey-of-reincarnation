@@ -1,4 +1,4 @@
-import { ReincarnationResult, Achievement, GameMode } from '@/types';
+import { ReincarnationResult } from '@/types';
 
 // GEO分析和优化工具函数
 
@@ -110,18 +110,21 @@ export function extractEducationalKeywords(
   const keywords: string[] = [];
   
   // 添加国家相关关键词
-  if (keywordMaps[language].countries[result.country]) {
-    keywords.push(...keywordMaps[language].countries[result.country]);
+  const countryMaps = keywordMaps[language].countries as Record<string, string[]>;
+  if (countryMaps[result.country]) {
+    keywords.push(...countryMaps[result.country]);
   }
   
   // 添加时代相关关键词
-  if (keywordMaps[language].eras[result.era]) {
-    keywords.push(...keywordMaps[language].eras[result.era]);
+  const eraMaps = keywordMaps[language].eras as Record<string, string[]>;
+  if (eraMaps[result.era]) {
+    keywords.push(...eraMaps[result.era]);
   }
   
   // 添加稀有度相关关键词
-  if (keywordMaps[language].rarity[result.rarity]) {
-    keywords.push(...keywordMaps[language].rarity[result.rarity]);
+  const rarityMaps = keywordMaps[language].rarity as Record<string, string[]>;
+  if (rarityMaps[result.rarity]) {
+    keywords.push(...rarityMaps[result.rarity]);
   }
   
   // 添加天赋相关关键词
@@ -251,7 +254,7 @@ export function generateAITrackingParams(source: string, query?: string, context
 /**
  * 验证结构化数据格式
  */
-export function validateStructuredData(data: any): { isValid: boolean; errors: string[] } {
+export function validateStructuredData(data: Record<string, unknown>): { isValid: boolean; errors: string[] } {
   const errors: string[] = [];
   
   // 基础验证
@@ -272,7 +275,7 @@ export function validateStructuredData(data: any): { isValid: boolean; errors: s
   }
   
   // URL验证
-  if (data.url && !data.url.startsWith('https://')) {
+  if (data.url && typeof data.url === 'string' && !data.url.startsWith('https://')) {
     errors.push('URL should use HTTPS');
   }
   

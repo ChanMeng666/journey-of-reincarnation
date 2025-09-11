@@ -19,6 +19,10 @@ export function GEOHead({
   language = 'en' 
 }: GEOHeadProps) {
   
+  // 防止未使用变量警告，这些参数可能在特定页面类型中使用
+  void achievementData;
+  void gameMode;
+  
   const getBaseContext = () => {
     const contexts = {
       en: `

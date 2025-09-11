@@ -1,8 +1,12 @@
 import { ReincarnationResult, Achievement, GameMode } from '@/types';
 
-interface StructuredDataProps {
-  type: 'application' | 'reincarnation-result' | 'achievement' | 'game-mode' | 'statistics';
-  data?: any;
+// 统计数据类型接口
+interface StatsData {
+  totalReincarnations?: number;
+  countries?: Record<string, number>;
+  rarityDistribution?: Record<string, number>;
+  averageLifespan?: number;
+  [key: string]: unknown;
 }
 
 // 应用级核心结构化数据
@@ -304,12 +308,16 @@ export function GameModeStructuredData({ mode }: { mode: GameMode }) {
 }
 
 // 统计数据结构化标记
-export function StatisticsStructuredData({ stats }: { stats: any }) {
+export function StatisticsStructuredData({ stats }: { stats: StatsData }) {
+  // 使用stats参数避免未使用警告
+  const hasData = stats && Object.keys(stats).length > 0;
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "Reincarnation Statistics",
-    "description": "Comprehensive analytics and insights from reincarnation simulation data",
+    "description": hasData 
+      ? `Comprehensive analytics and insights from ${stats.totalReincarnations || 'multiple'} reincarnation simulations` 
+      : "Comprehensive analytics and insights from reincarnation simulation data",
     "creator": {
       "@type": "WebApplication",
       "name": "Journey of Reincarnation"
@@ -331,7 +339,16 @@ export function StatisticsStructuredData({ stats }: { stats: any }) {
         "@type": "GeoShape",
         "box": "-90,-180 90,180"
       }
-    }
+    },
+    ...(hasData && stats.averageLifespan && {
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "averageLifespan",
+          "value": stats.averageLifespan
+        }
+      ]
+    })
   };
 
   return (
