@@ -203,28 +203,26 @@ export function ReincarnationResultStructuredData({ result }: { result: Reincarn
       "@type": "InteractionCounter",
       "interactionType": "https://schema.org/ShareAction",
       "userInteractionCount": 0 // 可以动态更新
-    }
+    },
+    // 条件性添加特殊事件信息
+    ...(result.specialEvents && result.specialEvents.length > 0 && {
+      "specialFeatures": result.specialEvents.map(event => ({
+        "@type": "Thing",
+        "name": event,
+        "category": "SpecialEvent"
+      }))
+    }),
+    // 条件性添加业力信息
+    ...(result.karmaInfluence && {
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Karma Influence",
+          "value": result.karmaInfluence
+        }
+      ]
+    })
   };
-
-  // 添加特殊事件信息
-  if (result.specialEvents && result.specialEvents.length > 0) {
-    structuredData['specialFeatures'] = result.specialEvents.map(event => ({
-      "@type": "Thing",
-      "name": event,
-      "category": "SpecialEvent"
-    }));
-  }
-
-  // 添加业力信息
-  if (result.karmaInfluence) {
-    structuredData['additionalProperty'] = [
-      {
-        "@type": "PropertyValue",
-        "name": "Karma Influence",
-        "value": result.karmaInfluence
-      }
-    ];
-  }
 
   return (
     <script
