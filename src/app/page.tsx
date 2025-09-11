@@ -8,6 +8,9 @@ import { StatsCard } from "@/components/ui/stats-card";
 import { ComparisonTable } from "@/components/ui/comparison-table";
 import { ShareDialog } from "@/components/ui/share-dialog";
 
+// GEO组件导入
+import { GEOHead, AppLevelStructuredData, ReincarnationResultStructuredData } from "@/components/seo";
+
 import { AchievementUnlockDialog } from "@/components/ui/achievement-unlock-dialog";
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -161,9 +164,23 @@ export default function Home() {
     const currentResult = results[results.length - 1];
 
     return (
-        <MainLayout>
-            <ModernParticleBackground theme="cosmic" particleCount={30} />
-            <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto relative z-10">
+        <>
+            {/* GEO优化组件 */}
+            <GEOHead 
+                pageType={currentResult ? "result" : "home"} 
+                resultData={currentResult}
+                language="en" // 可以根据用户设置动态获取
+            />
+            <AppLevelStructuredData />
+            
+            {/* 如果有轮回结果，添加结果特定的结构化数据 */}
+            {currentResult && (
+                <ReincarnationResultStructuredData result={currentResult} />
+            )}
+
+            <MainLayout>
+                <ModernParticleBackground theme="cosmic" particleCount={30} />
+                <div className="flex flex-col items-center gap-8 max-w-7xl mx-auto relative z-10">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -295,6 +312,7 @@ export default function Home() {
                     rareLifeCount: results.filter(r => ['rare', 'epic', 'legendary'].includes(r.rarity)).length
                 }}
             />
-        </MainLayout>
+            </MainLayout>
+        </>
     );
 }
