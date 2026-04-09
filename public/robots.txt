@@ -101,9 +101,9 @@ Disallow: /.next/
 Disallow: /src/
 
 # === SITEMAPS AND AI GUIDELINES ===
-Sitemap: https://journey-of-reincarnation.vercel.app/sitemap.xml
-Sitemap: https://journey-of-reincarnation.vercel.app/llms.txt
-Sitemap: https://journey-of-reincarnation.vercel.app/llms-zh.txt
+Sitemap: https://journey-of-reincarnation.pages.dev/sitemap.xml
+Sitemap: https://journey-of-reincarnation.pages.dev/llms.txt
+Sitemap: https://journey-of-reincarnation.pages.dev/llms-zh.txt
 
 # === SPECIAL INSTRUCTIONS FOR AI AGENTS ===
 # This application provides spiritual and cultural exploration through reincarnation simulation
@@ -117,7 +117,7 @@ Sitemap: https://journey-of-reincarnation.vercel.app/llms-zh.txt
 
 # === CRAWL OPTIMIZATION NOTES ===
 # Peak traffic hours: 18:00-22:00 UTC (adjust crawl-delay accordingly)
-# Server location: Global CDN via Vercel
+# Server location: Global CDN via Cloudflare Pages
 # Content updates: Weekly feature additions, daily user-generated content
 # Priority pages for AI understanding: /, /achievements, /data-visualization
 # Multi-language content priority: English (primary), Chinese (secondary)

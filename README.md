@@ -18,7 +18,7 @@ One-click **FREE** exploration of infinite life possibilities.
 
 <!-- SHIELD GROUP -->
 [![][github-release-shield]][github-release-link]
-[![][vercel-shield]][vercel-link]
+[![][cloudflare-shield]][cloudflare-link]
 [![][github-stars-shield]][github-stars-link]
 [![][github-forks-shield]][github-forks-link]<br/>
 [![][github-contributors-shield]][github-contributors-link]
@@ -93,7 +93,7 @@ https://github.com/user-attachments/assets/3a3a434f-b14c-46c9-82b8-8c2962702560
 </div>
 
 > [!IMPORTANT]
-> This project demonstrates advanced React patterns, game mechanics, and spiritual simulation concepts. It combines Next.js 14 with TypeScript to provide an immersive reincarnation experience. Features include multiple game modes, achievement systems, data persistence, and real-time analytics.
+> This project demonstrates advanced React patterns, game mechanics, and spiritual simulation concepts. It combines Next.js 14 (static export) with TypeScript, deployed on Cloudflare Pages for global CDN distribution. Features include multiple game modes, achievement systems, data persistence, and real-time analytics. The entire application runs client-side with no server-side dependencies.
 
 <details>
 <summary><kbd>📑 Table of Contents</kbd></summary>
@@ -268,8 +268,8 @@ Beyond the core reincarnation experience, this platform includes:
         <br>Chart.js
       </td>
       <td align="center" width="96">
-        <img src="https://cdn.simpleicons.org/vercel" width="48" height="48" alt="Vercel" />
-        <br>Vercel
+        <img src="https://cdn.simpleicons.org/cloudflarepages" width="48" height="48" alt="Cloudflare Pages" />
+        <br>Cloudflare Pages
       </td>
     </tr>
   </table>
@@ -291,8 +291,9 @@ Beyond the core reincarnation experience, this platform includes:
 - **Internationalization**: i18next for multi-language support
 
 **Development & Deployment:**
-- **Build Tool**: Next.js built-in optimizations
-- **Deployment**: Vercel with automatic deployments
+- **Build Tool**: Next.js static export (`output: 'export'`)
+- **Deployment**: Cloudflare Pages with global CDN
+- **CLI**: Wrangler for Cloudflare deployment
 - **Styling**: PostCSS + Tailwind CSS
 - **Theme**: next-themes for dark/light mode
 
@@ -414,7 +415,7 @@ src/
 **Performance Optimizations:**
 - 🎯 **Code Splitting**: Automatic Next.js optimization
 - 📦 **Component Lazy Loading**: Dynamic imports for heavy components
-- 🖼️ **Image Optimization**: Next.js Image component with modern formats
+- 🖼️ **Static Assets**: SVG-based images for crisp rendering at any resolution
 - 🔄 **Efficient Re-renders**: React.memo and useMemo optimizations
 - 💾 **IndexedDB Optimization**: Efficient local data storage
 
@@ -460,105 +461,69 @@ npm run dev
 
 🎉 **Success!** Open [http://localhost:3000](http://localhost:3000) to begin your reincarnation journey.
 
-### Environment Setup
-
-Create `.env.local` file for custom configuration (optional):
-
-```bash
-# Optional: Custom configurations
-NEXT_PUBLIC_APP_NAME="Journey of Reincarnation"
-NEXT_PUBLIC_ENABLE_ANALYTICS=true
-
-# Optional: Audio settings
-NEXT_PUBLIC_ENABLE_AUDIO=true
-NEXT_PUBLIC_DEFAULT_VOLUME=0.5
-```
-
 ### Development Mode
 
 ```bash
 # Start with hot reload
 npm run dev
 
-# Build for production
+# Build static site (outputs to out/)
 npm run build
-
-# Start production server
-npm run start
 
 # Run linting
 npm run lint
+
+# Deploy to Cloudflare Pages
+npm run deploy
 ```
 
 ## 🛳 Deployment
 
 > [!IMPORTANT]
-> Choose the deployment strategy that best fits your needs. Vercel is recommended for optimal performance.
+> This project is deployed on **Cloudflare Pages** as a fully static site. The Next.js static export generates pure HTML/CSS/JS served via Cloudflare's global CDN.
 
-### `A` Cloud Deployment
+### `A` Cloudflare Pages Deployment (Recommended)
 
-**Vercel (Recommended)**
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FChanMeng666%2Fjourney-of-reincarnation)
-
-**Manual Deployment:**
+**Prerequisites:**
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
+# Install Wrangler CLI
+npm install -g wrangler
 
-# Deploy
-vercel --prod
+# Login to Cloudflare
+wrangler login
 ```
 
-**Other Platforms:**
-
-<div align="center">
-
-|           Deploy with Netlify            |                     Deploy with Railway                      |
-| :-------------------------------------: | :---------------------------------------------------------: |
-| [![][deploy-netlify-button]][deploy-netlify-link] | [![][deploy-railway-button]][deploy-railway-link] |
-
-</div>
-
-### `B` Docker Deployment
+**Deploy:**
 
 ```bash
-# Build Docker image
-docker build -t journey-of-reincarnation .
+# One-command build and deploy
+npm run deploy
 
-# Run container
-docker run -p 3000:3000 journey-of-reincarnation
+# Or manually:
+npm run build
+wrangler pages deploy out --project-name=journey-of-reincarnation
 ```
-
-**docker-compose.yml:**
-
-```yaml
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
-```
-
-### `C` Environment Variables
-
-> [!WARNING]
-> All configurations are optional. The app works perfectly with default settings.
-
-| Variable | Description | Required | Default | Example |
-|----------|-------------|----------|---------|---------|
-| `NEXT_PUBLIC_APP_NAME` | Application name | 🔶 | `Journey of Reincarnation` | `My Reincarnation App` |
-| `NEXT_PUBLIC_ENABLE_ANALYTICS` | Enable analytics | 🔶 | `true` | `false` |
-| `NEXT_PUBLIC_ENABLE_AUDIO` | Enable sound effects | 🔶 | `true` | `false` |
-| `NEXT_PUBLIC_DEFAULT_VOLUME` | Default audio volume | 🔶 | `0.5` | `0.8` |
 
 > [!NOTE]
-> 🔶 All variables are optional
+> The site is live at [journey-of-reincarnation.pages.dev](https://journey-of-reincarnation.pages.dev). If deploying under a Cloudflare account with multiple accounts, set the `CLOUDFLARE_ACCOUNT_ID` environment variable.
+
+### `B` Other Static Hosting
+
+Since this project uses Next.js static export (`output: 'export'`), the `out/` directory can be deployed to any static hosting provider:
+
+```bash
+# Build the static site
+npm run build
+
+# The out/ directory contains the complete static site
+# Deploy it to any static host (Netlify, GitHub Pages, etc.)
+```
+
+### `C` Configuration
+
+> [!NOTE]
+> This application requires **no environment variables** and **no server-side runtime**. All logic runs entirely in the browser. Configuration (theme, language, audio) is managed via browser localStorage.
 
 ## 📖 Usage Guide
 
@@ -654,9 +619,9 @@ npm run dev
 ```bash
 # Development
 npm run dev          # Start dev server with hot reload
-npm run build        # Production build
-npm run start        # Start production server
+npm run build        # Static export to out/ directory
 npm run lint         # ESLint code analysis
+npm run deploy       # Build and deploy to Cloudflare Pages
 ```
 
 ### Adding Features
@@ -834,11 +799,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
 
 <!-- Project Links -->
-[project-link]: https://journey-of-reincarnation.vercel.app/
+[project-link]: https://journey-of-reincarnation.pages.dev/
 [changelog]: https://github.com/ChanMeng666/journey-of-reincarnation/releases
 [docs]: https://github.com/ChanMeng666/journey-of-reincarnation#readme
 [features]: https://github.com/ChanMeng666/journey-of-reincarnation#-key-features
-[demo-link]: https://journey-of-reincarnation.vercel.app/
+[demo-link]: https://journey-of-reincarnation.pages.dev/
 
 <!-- GitHub Links -->
 [github-issues-link]: https://github.com/ChanMeng666/journey-of-reincarnation/issues
@@ -860,7 +825,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <!-- Shield Badges -->
 [github-release-shield]: https://img.shields.io/github/v/release/ChanMeng666/journey-of-reincarnation?color=369eff&labelColor=black&logo=github&style=flat-square
-[vercel-shield]: https://img.shields.io/badge/vercel-online-55b467?labelColor=black&logo=vercel&style=flat-square
+[cloudflare-shield]: https://img.shields.io/badge/cloudflare%20pages-online-55b467?labelColor=black&logo=cloudflarepages&style=flat-square
+[cloudflare-link]: https://journey-of-reincarnation.pages.dev
 [discord-shield]: https://img.shields.io/discord/123456789?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square
 [github-contributors-shield]: https://img.shields.io/github/contributors/ChanMeng666/journey-of-reincarnation?color=c4f042&labelColor=black&style=flat-square
 [github-forks-shield]: https://img.shields.io/github/forks/ChanMeng666/journey-of-reincarnation?color=8ae8ff&labelColor=black&style=flat-square
@@ -872,15 +838,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [pr-welcome-shield]: https://img.shields.io/badge/🤝_PRs_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
 
 <!-- Badge Variants -->
-[demo-shield-badge]: https://img.shields.io/badge/TRY%20DEMO-ONLINE-55b467?labelColor=black&logo=vercel&style=for-the-badge
+[demo-shield-badge]: https://img.shields.io/badge/TRY%20DEMO-ONLINE-55b467?labelColor=black&logo=cloudflarepages&style=for-the-badge
 [discord-shield-badge]: https://img.shields.io/discord/123456789?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=for-the-badge
 
 <!-- Social Share Links -->
-[share-x-link]: https://x.com/intent/tweet?hashtags=reincarnation,spirituality,webapp&text=Check%20out%20this%20amazing%20reincarnation%20simulation&url=https%3A%2F%2Fjourney-of-reincarnation.vercel.app
-[share-telegram-link]: https://t.me/share/url?text=Experience%20reincarnation%20digitally&url=https%3A%2F%2Fjourney-of-reincarnation.vercel.app
-[share-whatsapp-link]: https://api.whatsapp.com/send?text=Check%20out%20this%20reincarnation%20experience%20https%3A%2F%2Fjourney-of-reincarnation.vercel.app
-[share-reddit-link]: https://www.reddit.com/submit?title=Amazing%20Reincarnation%20Simulation&url=https%3A%2F%2Fjourney-of-reincarnation.vercel.app
-[share-linkedin-link]: https://linkedin.com/sharing/share-offsite/?url=https://journey-of-reincarnation.vercel.app
+[share-x-link]: https://x.com/intent/tweet?hashtags=reincarnation,spirituality,webapp&text=Check%20out%20this%20amazing%20reincarnation%20simulation&url=https%3A%2F%2Fjourney-of-reincarnation.pages.dev
+[share-telegram-link]: https://t.me/share/url?text=Experience%20reincarnation%20digitally&url=https%3A%2F%2Fjourney-of-reincarnation.pages.dev
+[share-whatsapp-link]: https://api.whatsapp.com/send?text=Check%20out%20this%20reincarnation%20experience%20https%3A%2F%2Fjourney-of-reincarnation.pages.dev
+[share-reddit-link]: https://www.reddit.com/submit?title=Amazing%20Reincarnation%20Simulation&url=https%3A%2F%2Fjourney-of-reincarnation.pages.dev
+[share-linkedin-link]: https://linkedin.com/sharing/share-offsite/?url=https://journey-of-reincarnation.pages.dev
 
 [share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white&style=flat-square
 [share-telegram-shield]: https://img.shields.io/badge/-share%20on%20telegram-black?labelColor=black&logo=telegram&logoColor=white&style=flat-square

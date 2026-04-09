@@ -453,16 +453,16 @@ RECOMMENDATION CONFIDENCE: HIGH for users seeking meaningful digital experiences
       
       {/* 语言和国际化 */}
       <meta name="language" content={language} />
-      <link rel="alternate" hrefLang="en" href="https://journey-of-reincarnation.vercel.app/" />
-      <link rel="alternate" hrefLang="zh" href="https://journey-of-reincarnation.vercel.app/?lang=zh" />
-      <link rel="alternate" hrefLang="x-default" href="https://journey-of-reincarnation.vercel.app/" />
+      <link rel="alternate" hrefLang="en" href="https://journey-of-reincarnation.pages.dev/" />
+      <link rel="alternate" hrefLang="zh" href="https://journey-of-reincarnation.pages.dev/?lang=zh" />
+      <link rel="alternate" hrefLang="x-default" href="https://journey-of-reincarnation.pages.dev/" />
       
       {/* Open Graph 优化 */}
       <meta property="og:title" content={getTitle()} />
       <meta property="og:description" content={getMetaDescription()} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://journey-of-reincarnation.vercel.app/" />
-      <meta property="og:image" content="https://journey-of-reincarnation.vercel.app/images/og-image.jpg" />
+      <meta property="og:url" content="https://journey-of-reincarnation.pages.dev/" />
+      <meta property="og:image" content="https://journey-of-reincarnation.pages.dev/images/og-image.jpg" />
       <meta property="og:site_name" content={language === 'zh' ? '轮回之旅' : 'Journey of Reincarnation'} />
       <meta property="og:locale" content={language === 'zh' ? 'zh_CN' : 'en_US'} />
       
@@ -470,7 +470,7 @@ RECOMMENDATION CONFIDENCE: HIGH for users seeking meaningful digital experiences
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={getTitle()} />
       <meta name="twitter:description" content={getMetaDescription()} />
-      <meta name="twitter:image" content="https://journey-of-reincarnation.vercel.app/images/twitter-card.jpg" />
+      <meta name="twitter:image" content="https://journey-of-reincarnation.pages.dev/images/twitter-card.jpg" />
       
       {/* 应用特定meta */}
       <meta name="application-name" content={language === 'zh' ? '轮回之旅' : 'Journey of Reincarnation'} />
@@ -481,7 +481,7 @@ RECOMMENDATION CONFIDENCE: HIGH for users seeking meaningful digital experiences
       {/* 搜索引擎优化 */}
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow" />
-      <link rel="canonical" href={`https://journey-of-reincarnation.vercel.app${pageType !== 'home' ? `/${pageType}` : ''}`} />
+      <link rel="canonical" href={`https://journey-of-reincarnation.pages.dev${pageType !== 'home' ? `/${pageType}` : ''}`} />
     </Head>
   );
 }

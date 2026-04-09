@@ -5,73 +5,73 @@
   
   <!-- Homepage - Primary Entry Point -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/?lang=zh" />
   </url>
 
   <!-- Core Application Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/achievements</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/achievements</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/achievements" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/achievements?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/achievements" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/achievements?lang=zh" />
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/data-visualization</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/data-visualization</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/data-visualization" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/data-visualization?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/data-visualization" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/data-visualization?lang=zh" />
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/leaderboard</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/leaderboard</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/leaderboard" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/leaderboard?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/leaderboard" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/leaderboard?lang=zh" />
   </url>
 
   <!-- Game Mode Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/game-modes</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/game-modes</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/game-modes/classic</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/game-modes/classic</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/game-modes/historical</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/game-modes/historical</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/game-modes/fantasy</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/game-modes/fantasy</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/game-modes/scifi</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/game-modes/scifi</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -79,64 +79,64 @@
 
   <!-- Karma System Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/karma</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/karma</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/karma" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/karma?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/karma" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/karma?lang=zh" />
   </url>
 
   <!-- Educational Content Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/about</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/about</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/about" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/about?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/about" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/about?lang=zh" />
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/how-it-works</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/how-it-works</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.vercel.app/how-it-works" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.vercel.app/how-it-works?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://journey-of-reincarnation.pages.dev/how-it-works" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://journey-of-reincarnation.pages.dev/how-it-works?lang=zh" />
   </url>
 
   <!-- Cultural Exploration Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/countries</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/countries</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/countries/china</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/countries/china</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/countries/usa</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/countries/usa</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/countries/japan</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/countries/japan</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/countries/india</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/countries/india</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -144,28 +144,28 @@
 
   <!-- API Endpoints for AI Understanding -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/api/sample-reincarnation</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/api/sample-reincarnation</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/api/achievements-overview</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/api/achievements-overview</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/api/countries-data</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/api/countries-data</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/api/game-modes</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/api/game-modes</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -173,14 +173,14 @@
 
   <!-- AI Guidelines -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/llms.txt</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/llms.txt</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/llms-zh.txt</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/llms-zh.txt</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -188,14 +188,14 @@
 
   <!-- Language-Specific Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/en</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/en</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/zh</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/zh</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -203,14 +203,14 @@
 
   <!-- Privacy and Legal Pages -->
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/privacy</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/privacy</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://journey-of-reincarnation.vercel.app/terms</loc>
+    <loc>https://journey-of-reincarnation.pages.dev/terms</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

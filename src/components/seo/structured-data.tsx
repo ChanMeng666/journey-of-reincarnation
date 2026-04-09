@@ -17,13 +17,13 @@ export function AppLevelStructuredData() {
     "name": "Journey of Reincarnation",
     "alternateName": ["轮回之旅", "Reincarnation Simulator", "Life Simulation Game"],
     "description": "Immersive spiritual exploration through reincarnation simulation across cultures, eras, and circumstances. Features karma system, 50+ achievements, and meaningful progression.",
-    "url": "https://journey-of-reincarnation.vercel.app",
+    "url": "https://journey-of-reincarnation.pages.dev",
     "applicationCategory": ["GameApplication", "EducationalApplication", "LifestyleApplication"],
     "operatingSystem": ["Web Browser", "iOS Safari", "Android Chrome"],
     "browserRequirements": "HTML5, ES6, WebGL",
     "offers": {
       "@type": "Offer",
-      "@id": "https://journey-of-reincarnation.vercel.app/#free-access",
+      "@id": "https://journey-of-reincarnation.pages.dev/#free-access",
       "price": "0",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
@@ -41,7 +41,7 @@ export function AppLevelStructuredData() {
     "publisher": {
       "@type": "Organization", 
       "name": "Journey of Reincarnation",
-      "url": "https://journey-of-reincarnation.vercel.app"
+      "url": "https://journey-of-reincarnation.pages.dev"
     },
     "inLanguage": ["en-US", "zh-CN"],
     "availableLanguage": [
@@ -69,9 +69,9 @@ export function AppLevelStructuredData() {
       "Social sharing capabilities"
     ],
     "screenshot": [
-      "https://journey-of-reincarnation.vercel.app/images/screenshot-main.jpg",
-      "https://journey-of-reincarnation.vercel.app/images/screenshot-results.jpg",
-      "https://journey-of-reincarnation.vercel.app/images/screenshot-achievements.jpg"
+      "https://journey-of-reincarnation.pages.dev/images/screenshot-main.jpg",
+      "https://journey-of-reincarnation.pages.dev/images/screenshot-results.jpg",
+      "https://journey-of-reincarnation.pages.dev/images/screenshot-achievements.jpg"
     ],
     "softwareVersion": "2.0.0",
     "datePublished": "2024-01-01",
@@ -143,7 +143,7 @@ export function ReincarnationResultStructuredData({ result }: { result: Reincarn
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "@id": `https://journey-of-reincarnation.vercel.app/result/${result.id}`,
+    "@id": `https://journey-of-reincarnation.pages.dev/result/${result.id}`,
     "name": `Reincarnation as ${result.gender} in ${result.country}`,
     "headline": `${result.rarity.charAt(0).toUpperCase() + result.rarity.slice(1)} Life in ${result.country} (${result.era} Era)`,
     "description": `Experience life as a ${result.socialClass} class ${result.gender} in ${result.country} during the ${result.era} era. Talents: ${result.talents.join(', ')}. Lifespan: ${result.lifespan} years.`,
@@ -185,7 +185,7 @@ export function ReincarnationResultStructuredData({ result }: { result: Reincarn
     "isPartOf": {
       "@type": "WebApplication",
       "name": "Journey of Reincarnation",
-      "url": "https://journey-of-reincarnation.vercel.app"
+      "url": "https://journey-of-reincarnation.pages.dev"
     },
     "mainEntity": {
       "@type": "Person",
@@ -245,7 +245,7 @@ export function AchievementStructuredData({ achievements }: { achievements: Achi
       "position": index + 1,
       "item": {
         "@type": "Achievement",
-        "@id": `https://journey-of-reincarnation.vercel.app/achievement/${achievement.id}`,
+        "@id": `https://journey-of-reincarnation.pages.dev/achievement/${achievement.id}`,
         "name": achievement.nameKey,
         "description": achievement.descriptionKey,
         "image": achievement.icon,
@@ -327,7 +327,7 @@ export function StatisticsStructuredData({ stats }: { stats: StatsData }) {
     "distribution": {
       "@type": "DataDownload",
       "encodingFormat": "application/json",
-      "contentUrl": "https://journey-of-reincarnation.vercel.app/api/statistics"
+      "contentUrl": "https://journey-of-reincarnation.pages.dev/api/statistics"
     },
     "temporalCoverage": "2024-01-01/..",
     "spatialCoverage": {
@@ -387,16 +387,16 @@ export function ArticleStructuredData({
       "name": "Journey of Reincarnation",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://journey-of-reincarnation.vercel.app/images/logo.png"
+        "url": "https://journey-of-reincarnation.pages.dev/images/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://journey-of-reincarnation.vercel.app/"
+      "@id": "https://journey-of-reincarnation.pages.dev/"
     },
     "image": {
       "@type": "ImageObject",
-      "url": "https://journey-of-reincarnation.vercel.app/images/article-cover.jpg",
+      "url": "https://journey-of-reincarnation.pages.dev/images/article-cover.jpg",
       "width": 1200,
       "height": 630
     }

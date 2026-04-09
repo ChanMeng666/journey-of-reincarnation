@@ -282,7 +282,7 @@
 
 ---
 
-**应用网址**：https://journey-of-reincarnation.vercel.app
+**应用网址**：https://journey-of-reincarnation.pages.dev
 **最后更新**：2024年12月19日
 **版本**：2.0.0
 **语言**：中文（主要），英文（完整支持）
