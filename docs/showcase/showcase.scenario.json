@@ -1,0 +1,50 @@
+{
+  "baseUrl": "https://journey-of-reincarnation.pages.dev/",
+  "reducedMotion": "no-preference",
+  "viewports": {
+    "desktop": { "width": 1280, "height": 800, "deviceScaleFactor": 2 },
+    "mobile": { "width": 390, "height": 844, "deviceScaleFactor": 3, "isMobile": true }
+  },
+  "pages": [
+    {
+      "label": "hero",
+      "url": "https://journey-of-reincarnation.pages.dev/",
+      "viewport": "desktop",
+      "before": [
+        { "action": "wait", "ms": 2000 }
+      ]
+    },
+    {
+      "label": "result",
+      "url": "https://journey-of-reincarnation.pages.dev/",
+      "viewport": "desktop",
+      "before": [
+        { "action": "wait", "ms": 2000 },
+        { "action": "click", "selector": "button.from-purple-500" },
+        { "action": "wait", "ms": 3500 },
+        { "action": "scroll", "by": 350 }
+      ]
+    },
+    {
+      "label": "mobile-hero",
+      "url": "https://journey-of-reincarnation.pages.dev/",
+      "viewport": "mobile",
+      "before": [
+        { "action": "wait", "ms": 2000 }
+      ]
+    }
+  ],
+  "demo": {
+    "size": { "width": 1280, "height": 800 },
+    "steps": [
+      { "action": "goto", "url": "https://journey-of-reincarnation.pages.dev/" },
+      { "action": "wait", "ms": 2000 },
+      { "action": "click", "selector": "button.from-purple-500" },
+      { "action": "wait", "ms": 3500 },
+      { "action": "scroll", "by": 300 },
+      { "action": "wait", "ms": 1500 },
+      { "action": "scroll", "by": 200 },
+      { "action": "wait", "ms": 1500 }
+    ]
+  }
+}
