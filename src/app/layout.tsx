@@ -11,6 +11,7 @@ import { I18nProvider } from './i18n-provider';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://journey-of-reincarnation.pages.dev"),
     title: "Journey of Reincarnation",
     description: "A journey through different lives",
     icons: {
@@ -20,6 +21,26 @@ export const metadata: Metadata = {
                 type: "image/svg+xml",
             }
         ]
+    },
+    openGraph: {
+        title: "Journey of Reincarnation",
+        description: "A journey through different lives.",
+        type: "website",
+        siteName: "Journey of Reincarnation",
+        images: [
+            {
+                url: "/og-cover.png",
+                width: 1200,
+                height: 630,
+                alt: "Journey of Reincarnation — a journey through different lives",
+            }
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Journey of Reincarnation",
+        description: "A journey through different lives.",
+        images: ["/og-cover.png"],
     }
 };
 
